@@ -1,0 +1,6 @@
+package com.example.messeenger_flutter
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
