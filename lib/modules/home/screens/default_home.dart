@@ -11,19 +11,17 @@ class DefaultHome extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home'),
-        actions: [
-          InkWell(
-            child: Text('Go to login page'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => LoginPage(),
-                ),
-              );
-            },
-          )
-        ],
+        leading: IconButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => LoginPage(),
+              ),
+            );
+          },
+          icon: Icon(Icons.login),
+        ),
       ),
       body: SafeArea(
         child: Row(
@@ -31,8 +29,18 @@ class DefaultHome extends StatelessWidget {
             Container(
               width: 400,
               height: double.maxFinite,
-              decoration: const BoxDecoration(
-                color: Colors.blue,
+              child: Row(
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        height: 100,
+                        child: Text('Hello'),
+                        decoration: BoxDecoration(color: Colors.black),
+                      )
+                    ],
+                  )
+                ],
               ),
             ),
             Expanded(
