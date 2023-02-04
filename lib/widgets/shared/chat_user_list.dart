@@ -27,7 +27,7 @@ class _ChatUserListState extends State<ChatUserList> {
         child: ListView(
           children: [
             ChatUserItem(
-              img: 'https://github.com/thangved.png',
+              img: 'https://yt3.ggpht.com/-4q2Qv2ST2eeXf4ZiNDQ-h7FZURUMaB8-h_mD6z0hJypffploao8K9Kj_wZhPgbtcWCdr1j8=s88-c-k-c0x00ffffff-no-rj-mo',
               name: 'Kim Minh Thắng',
               lastMessage: 'Hello bà',
               active: _selectedIndex == 0,
@@ -40,8 +40,8 @@ class _ChatUserListState extends State<ChatUserList> {
             ChatUserItem(
               img:
                   'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
-              name: 'Kim Minh Thắng',
-              lastMessage: 'Hello bà',
+              name: 'Minh Hí',
+              lastMessage: 'Bạn: Hí ae',
               active: _selectedIndex == 1,
               onTap: () {
                 setState(() {

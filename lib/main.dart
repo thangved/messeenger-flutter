@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
                               ClipRRect(
                                 borderRadius: BorderRadius.circular(100),
                                 child: Image.network(
-                                  'https://github.com/thangved.png',
+                                  'https://yt3.ggpht.com/-4q2Qv2ST2eeXf4ZiNDQ-h7FZURUMaB8-h_mD6z0hJypffploao8K9Kj_wZhPgbtcWCdr1j8=s88-c-k-c0x00ffffff-no-rj-mo',
                                   width: 40,
                                   height: 40,
                                 ),
