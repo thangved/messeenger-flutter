@@ -22,7 +22,7 @@ class MyMessage extends StatelessWidget {
                 maxWidth: 200,
               ),
               child: Text(
-                'Ê đâu rồi cu',
+                'Ê đâu rồi',
                 style: TextStyle(
                   color: Colors.white,
                 ),

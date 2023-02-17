@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/widgets/shared/profile_session.dart';
 
 class DesktopNavigation extends StatefulWidget {
-  const DesktopNavigation({super.key});
+  const DesktopNavigation({super.key, required this.setSelectedIndex});
+
+  final void Function(int) setSelectedIndex;
 
   @override
   State<DesktopNavigation> createState() => _DesktopNavigationState();
@@ -43,8 +45,8 @@ class _DesktopNavigationState extends State<DesktopNavigation> {
         leading: Container(
           margin: const EdgeInsets.only(bottom: 20),
           child: Image.asset(
-            'assets/logo.png',
-            width: 40,
+            'assets/icon.png',
+            width: 60,
           ),
         ),
         trailing: InkWell(
@@ -70,6 +72,7 @@ class _DesktopNavigationState extends State<DesktopNavigation> {
         onDestinationSelected: (index) {
           setState(() {
             _selectedIndex = index;
+            widget.setSelectedIndex(index);
           });
         },
       ),

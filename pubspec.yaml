@@ -40,6 +40,7 @@ dependencies:
   google_fonts: ^4.0.1
   flutter_svg: ^1.1.6
   file_picker: ^5.2.5
+  flutter_launcher_icons: ^0.11.0
 
 dev_dependencies:
   flutter_test:
@@ -94,3 +95,8 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_icons:
+  image_path: "assets/favicon.png"
+  linux: true
+  android: true
+  web: true
