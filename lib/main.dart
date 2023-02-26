@@ -5,14 +5,16 @@ import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:messeenger_flutter/modules/home/screens/default_home.dart';
-import 'package:messeenger_flutter/modules/home/widgets/chat_user_list.dart';
-import 'package:messeenger_flutter/modules/home/widgets/desktop_navigation.dart';
-import 'package:messeenger_flutter/modules/home/widgets/main_chat.dart';
+import 'package:messeenger_flutter/providers/auth-provider.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(
       DevicePreview(
         enabled: !kReleaseMode,
-        builder: (context) => MyApp(), // Wrap your app
+        builder: (context) => MultiProvider(
+          providers: [ChangeNotifierProvider(create: (_) => AuthProvider())],
+          child: const MyApp(),
+        ), // Wrap your app
       ),
     );
 
@@ -21,6 +23,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (!context.watch<AuthProvider>().logged) {
+      return Container(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                context.read<AuthProvider>().accessToken = "token";
+              },
+              child: Text(context.read<AuthProvider>().logged
+                  ? context.read<AuthProvider>().accessToken
+                  : 'Login'),
+            )
+          ],
+        ),
+      );
+    }
+
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,

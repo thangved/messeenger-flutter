@@ -9,7 +9,7 @@ class BottomChatForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
@@ -24,24 +24,23 @@ class BottomChatForm extends StatelessWidget {
         children: [
           IconButton(
             onPressed: () async {},
-            icon: Icon(
+            icon: const Icon(
               Icons.add_circle_rounded,
               color: Colors.blue,
             ),
           ),
           IconButton(
             onPressed: () async {
-              final result =
                   await FilePicker.platform.pickFiles(type: FileType.image);
             },
-            icon: Icon(
+            icon: const Icon(
               Icons.photo_rounded,
               color: Colors.blue,
             ),
           ),
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 20,
               ),
               decoration: BoxDecoration(
@@ -49,7 +48,7 @@ class BottomChatForm extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               child: TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   hintText: 'Aa',
                   border: InputBorder.none,
                 ),
@@ -59,7 +58,7 @@ class BottomChatForm extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {},
-            icon: Icon(
+            icon: const Icon(
               Icons.send_rounded,
               color: Colors.blue,
             ),

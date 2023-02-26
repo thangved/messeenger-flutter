@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -20,20 +22,20 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.symmetric(vertical: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       ClipRRect(
+                        borderRadius: BorderRadius.circular(200),
                         child: Image.network(
                           'https://yt3.ggpht.com/-4q2Qv2ST2eeXf4ZiNDQ-h7FZURUMaB8-h_mD6z0hJypffploao8K9Kj_wZhPgbtcWCdr1j8=s88-c-k-c0x00ffffff-no-rj-mo',
                           width: 100,
                           height: 100,
                           fit: BoxFit.cover,
                         ),
-                        borderRadius: BorderRadius.circular(200),
                       ),
-                      Text(
+                      const Text(
                         'Kim Minh Thắng',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -51,7 +53,7 @@ class ProfileScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Họ',
                       hintText: 'Parker',
                       border: InputBorder.none,
@@ -67,7 +69,7 @@ class ProfileScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Tên',
                       hintText: 'Peter',
                       border: InputBorder.none,
@@ -83,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: TextFormField(
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Tên đăng nhập',
                       hintText: 'spiderman',
                       border: InputBorder.none,
@@ -101,7 +103,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Email',
                       hintText: 'spiderman@marvel.com',
                       border: InputBorder.none,
@@ -114,7 +116,7 @@ class ProfileScreen extends StatelessWidget {
                   height: 40,
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: Text('Lưu'),
+                    child: const Text('Lưu'),
                   ),
                 ),
               ],

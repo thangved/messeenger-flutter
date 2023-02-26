@@ -9,14 +9,14 @@ class ProfileSession extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       height: 300,
       child: Column(
         children: [
           Row(
             children: [
               Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                     color: Colors.black.withAlpha(10),
                     borderRadius: BorderRadius.circular(20)),
@@ -31,10 +31,10 @@ class ProfileSession extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'Kim Minh Thắng',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -47,13 +47,13 @@ class ProfileSession extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (context) => ProfileScreen()),
+                                builder: (context) => const ProfileScreen()),
                           );
                         },
-                        icon: Icon(Icons.settings_outlined)),
+                        icon: const Icon(Icons.settings_outlined)),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.logout_rounded),
+                      icon: const Icon(Icons.logout_rounded),
                     )
                   ],
                 ),

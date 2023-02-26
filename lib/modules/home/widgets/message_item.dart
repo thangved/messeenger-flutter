@@ -9,33 +9,33 @@ class MyMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: 5,
         horizontal: 10,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           InkWell(
             onLongPress: () {},
             child: Container(
-              constraints: BoxConstraints(
+              constraints: const BoxConstraints(
                 maxWidth: 200,
               ),
-              child: Text(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Text(
                 'Ê đâu rồi',
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(20),
-              ),
             ),
           )
         ],
-        mainAxisAlignment: MainAxisAlignment.end,
       ),
     );
   }
@@ -49,14 +49,15 @@ class OtherUserMessage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         vertical: 5,
         horizontal: 10,
       ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 20),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(100),
               child: Image.network(
@@ -70,22 +71,21 @@ class OtherUserMessage extends StatelessWidget {
           InkWell(
             onLongPress: () {},
             child: Container(
-              margin: EdgeInsets.only(left: 5),
-              constraints: BoxConstraints(
+              margin: const EdgeInsets.only(left: 5),
+              constraints: const BoxConstraints(
                 maxWidth: 200,
               ),
-              child: Text(
-                'Đây nè bà',
-              ),
-              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               decoration: BoxDecoration(
                 color: Colors.black.withAlpha(20),
                 borderRadius: BorderRadius.circular(20),
               ),
+              child: const Text(
+                'Đây nè bà',
+              ),
             ),
           )
         ],
-        mainAxisAlignment: MainAxisAlignment.start,
       ),
     );
   }

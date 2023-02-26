@@ -9,7 +9,7 @@ class UserInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 300,
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,
         border: Border(
@@ -22,7 +22,7 @@ class UserInfo extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               children: [
                 ClipRRect(
@@ -34,7 +34,7 @@ class UserInfo extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                Text(
+                const Text(
                   'Kim Minh Thắng',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -42,7 +42,7 @@ class UserInfo extends StatelessWidget {
                     height: 2,
                   ),
                 ),
-                Text('@thangved'),
+                const Text('@thangved'),
               ],
             ),
           )

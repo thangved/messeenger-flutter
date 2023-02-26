@@ -16,6 +16,8 @@ class _DefaultHomeState extends State<DefaultHome> {
 
   @override
   Widget build(BuildContext context) {
+
+
     const widgets = [ChatUserList(), FriendList(), Text('Yêu cầu kết bạn')];
     return Scaffold(
       body: SafeArea(
@@ -29,7 +31,7 @@ class _DefaultHomeState extends State<DefaultHome> {
               },
             ),
             widgets[_currentIndex],
-            MainChat(),
+            const MainChat(),
           ],
         ),
       ),

@@ -13,7 +13,7 @@ class MainChat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           top: 10,
           right: 10,
           bottom: 10,
@@ -28,9 +28,9 @@ class MainChat extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Scaffold(
               appBar: AppBar(
-                title: MainChatTitle(),
+                title: const MainChatTitle(),
               ),
-              body: MainChatBody(),
+              body: const MainChatBody(),
               backgroundColor: Colors.blue.withAlpha(10),
             ),
           ),
@@ -59,10 +59,10 @@ class MainChatTitle extends StatelessWidget {
           ),
         ),
         Container(
-          padding: EdgeInsets.only(left: 20),
+          padding: const EdgeInsets.only(left: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+            children: const [
               Text(
                 'Kim Minh Thắng',
                 style: TextStyle(
@@ -93,13 +93,13 @@ class MainChatBody extends StatelessWidget {
       children: [
         Expanded(
           child: Column(
-            children: [
+            children: const [
               MessageList(),
               BottomChatForm(),
             ],
           ),
         ),
-        UserInfo()
+        const UserInfo()
       ],
     );
   }
