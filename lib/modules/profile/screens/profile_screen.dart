@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:messeenger_flutter/models/user-model.dart';
+import 'package:messeenger_flutter/providers/auth-provider.dart';
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    UserModel currentUser = context.read<AuthProvider>().currentUser;
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Cài đặt tài khoản'),
@@ -29,15 +33,15 @@ class ProfileScreen extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(200),
                         child: Image.network(
-                          'https://yt3.ggpht.com/-4q2Qv2ST2eeXf4ZiNDQ-h7FZURUMaB8-h_mD6z0hJypffploao8K9Kj_wZhPgbtcWCdr1j8=s88-c-k-c0x00ffffff-no-rj-mo',
+                          currentUser.avatar,
                           width: 100,
                           height: 100,
                           fit: BoxFit.cover,
                         ),
                       ),
-                      const Text(
-                        'Kim Minh Thắng',
-                        style: TextStyle(
+                      Text(
+                        '${currentUser.lastName} ${currentUser.firstName}',
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 24,
                         ),
@@ -58,7 +62,7 @@ class ProfileScreen extends StatelessWidget {
                       hintText: 'Parker',
                       border: InputBorder.none,
                     ),
-                    initialValue: 'Kim',
+                    initialValue: currentUser.lastName,
                   ),
                 ),
                 Container(
@@ -74,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
                       hintText: 'Peter',
                       border: InputBorder.none,
                     ),
-                    initialValue: 'Minh Thắng',
+                    initialValue: currentUser.firstName,
                   ),
                 ),
                 Container(
@@ -91,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
                       border: InputBorder.none,
                       prefix: Text('@'),
                     ),
-                    initialValue: 'thangved',
+                    initialValue: currentUser.username,
                   ),
                 ),
                 Container(

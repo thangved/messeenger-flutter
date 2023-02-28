@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:messeenger_flutter/models/user-model.dart';
+import 'package:messeenger_flutter/providers/auth-provider.dart';
 import 'package:messeenger_flutter/widgets/shared/profile_session.dart';
+import 'package:provider/provider.dart';
 
 class DesktopNavigation extends StatefulWidget {
   const DesktopNavigation({super.key, required this.setSelectedIndex});
@@ -22,6 +25,8 @@ class _DesktopNavigationState extends State<DesktopNavigation> {
 
   @override
   Widget build(BuildContext context) {
+    UserModel currentUser = context.read<AuthProvider>().currentUser;
+
     return Container(
       decoration: BoxDecoration(
           border: Border(right: BorderSide(color: Colors.black.withAlpha(30)))),
@@ -53,7 +58,7 @@ class _DesktopNavigationState extends State<DesktopNavigation> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(100),
             child: Image.network(
-              'https://yt3.ggpht.com/-4q2Qv2ST2eeXf4ZiNDQ-h7FZURUMaB8-h_mD6z0hJypffploao8K9Kj_wZhPgbtcWCdr1j8=s88-c-k-c0x00ffffff-no-rj-mo',
+              currentUser.avatar,
               width: 40,
             ),
           ),

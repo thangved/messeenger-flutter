@@ -83,8 +83,8 @@ class LoginScreen extends StatelessWidget {
 
                           context.read<AuthProvider>().accessToken =
                               response['tokens']['accessToken'];
-                        } catch (error) {
-                        }
+                          Navigator.of(context).pushReplacementNamed('/');
+                        } catch (error) {}
                       },
                       child: Text("Đăng nhập"),
                     ),
@@ -104,8 +104,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pushNamed('/register');
+                          Navigator.of(context).pushReplacementNamed('/register');
                         },
                       )
                     ],

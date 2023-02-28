@@ -9,15 +9,19 @@ import 'package:messeenger_flutter/modules/profile/screens/profile_screen.dart';
 import 'package:messeenger_flutter/providers/auth-provider.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(
-      DevicePreview(
-        enabled: !kReleaseMode,
-        builder: (context) => MultiProvider(
-          providers: [ChangeNotifierProvider(create: (_) => AuthProvider())],
-          child: const MyApp(),
-        ), // Wrap your app
-      ),
-    );
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MultiProvider(
+        providers: [ChangeNotifierProvider(create: (_) => AuthProvider())],
+        child: const MyApp(),
+      ), // Wrap your app
+    ),
+  );
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

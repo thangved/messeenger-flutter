@@ -145,8 +145,7 @@ class RegisterScreen extends StatelessWidget {
                           ),
                         ),
                         onTap: () {
-                          Navigator.of(context).pop();
-                          Navigator.of(context).pushNamed('/login');
+                          Navigator.of(context).pushReplacementNamed('/login');
                         },
                       )
                     ],
