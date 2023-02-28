@@ -1,10 +1,11 @@
-import 'dart:developer';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:messeenger_flutter/modules/auth/screens/login_screen.dart';
+import 'package:messeenger_flutter/modules/auth/screens/register_screen.dart';
 import 'package:messeenger_flutter/modules/home/screens/default_home.dart';
+import 'package:messeenger_flutter/modules/profile/screens/profile_screen.dart';
 import 'package:messeenger_flutter/providers/auth-provider.dart';
 import 'package:provider/provider.dart';
 
@@ -23,23 +24,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!context.watch<AuthProvider>().logged) {
-      return Container(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                context.read<AuthProvider>().accessToken = "token";
-              },
-              child: Text(context.read<AuthProvider>().logged
-                  ? context.read<AuthProvider>().accessToken
-                  : 'Login'),
-            )
-          ],
-        ),
-      );
-    }
-
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
@@ -48,7 +32,14 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         textTheme: GoogleFonts.robotoTextTheme(),
       ),
-      home: const DefaultHome(),
+      routes: {
+        '/': (context) => context.watch<AuthProvider>().logged
+            ? DefaultHome()
+            : LoginScreen(),
+        '/login': (context) => LoginScreen(),
+        '/register': (context) => RegisterScreen(),
+        '/profile': (context) => ProfileScreen(),
+      },
     );
   }
 }

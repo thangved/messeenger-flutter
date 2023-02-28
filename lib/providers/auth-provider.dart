@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 class AuthProvider with ChangeNotifier {
@@ -11,6 +13,12 @@ class AuthProvider with ChangeNotifier {
   void set accessToken(String newAccessToken) {
     this._accessToken = newAccessToken;
     this._logged = true;
+    notifyListeners();
+  }
+
+  void logout() {
+    this._accessToken = "";
+    this._logged = false;
     notifyListeners();
   }
 }

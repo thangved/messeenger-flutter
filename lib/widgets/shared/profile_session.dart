@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/modules/profile/screens/profile_screen.dart';
+import 'package:messeenger_flutter/providers/auth-provider.dart';
+import 'package:provider/provider.dart';
 
 class ProfileSession extends StatelessWidget {
   const ProfileSession({
@@ -52,7 +54,9 @@ class ProfileSession extends StatelessWidget {
                         },
                         icon: const Icon(Icons.settings_outlined)),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<AuthProvider>().logout();
+                      },
                       icon: const Icon(Icons.logout_rounded),
                     )
                   ],
