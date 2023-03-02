@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:messeenger_flutter/models/user-model.dart';
-import 'package:messeenger_flutter/services/auth-service.dart';
-import 'package:messeenger_flutter/utils/token-util.dart';
+import 'package:messeenger_flutter/models/user_model.dart';
+import 'package:messeenger_flutter/services/auth_service.dart';
+import 'package:messeenger_flutter/utils/token_util.dart';
 
 class AuthProvider with ChangeNotifier {
   bool _logged = false;

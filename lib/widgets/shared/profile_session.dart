@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:messeenger_flutter/models/user-model.dart';
+import 'package:messeenger_flutter/models/user_model.dart';
 import 'package:messeenger_flutter/modules/profile/screens/profile_screen.dart';
-import 'package:messeenger_flutter/providers/auth-provider.dart';
+import 'package:messeenger_flutter/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
 
 class ProfileSession extends StatelessWidget {

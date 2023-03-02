@@ -1,12 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/modules/home/widgets/chat_user_list.dart';
 import 'package:messeenger_flutter/modules/home/widgets/desktop_navigation.dart';
 import 'package:messeenger_flutter/modules/home/widgets/friend_list.dart';
 import 'package:messeenger_flutter/modules/home/widgets/main_chat.dart';
-import 'package:messeenger_flutter/providers/auth-provider.dart';
-import 'package:provider/provider.dart';
 
 class DefaultHome extends StatefulWidget {
   const DefaultHome({super.key});

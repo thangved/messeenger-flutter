@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:messeenger_flutter/configs/http-config.dart';
-import 'package:messeenger_flutter/models/user-model.dart';
-import 'package:messeenger_flutter/utils/token-util.dart';
+import 'package:messeenger_flutter/configs/http_config.dart';
+import 'package:messeenger_flutter/models/user_model.dart';
+import 'package:messeenger_flutter/utils/token_util.dart';
 
 class AuthService {
   static login(username, password) async {
@@ -12,7 +12,6 @@ class AuthService {
       "username": username,
       "password": password,
     });
-
 
     if (response.statusCode != 200) {
       throw jsonDecode(response.body);

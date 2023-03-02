@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:messeenger_flutter/providers/auth-provider.dart';
-import 'package:messeenger_flutter/services/auth-service.dart';
+import 'package:messeenger_flutter/providers/auth_provider.dart';
+import 'package:messeenger_flutter/services/auth_service.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
-
   const LoginScreen({super.key});
 
   @override
