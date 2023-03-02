@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/models/chat_group_model.dart';
+import 'package:messeenger_flutter/providers/chat_provider.dart';
+import 'package:provider/provider.dart';
 
-class ChatUserList extends StatefulWidget {
+class ChatUserList extends StatelessWidget {
   const ChatUserList({
     Key? key,
     required this.chatList,
@@ -10,30 +12,21 @@ class ChatUserList extends StatefulWidget {
   final List<ChatGroupModel> chatList;
 
   @override
-  State<ChatUserList> createState() => _ChatUserListState();
-}
-
-class _ChatUserListState extends State<ChatUserList> {
-  int _selectedIndex = 0;
-
-  @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-        final group = widget.chatList[index];
+        final group = chatList[index];
         return ChatUserItem(
           img: group.avatar,
           name: group.name,
           lastMessage: group.lastMessage.content,
-          active: _selectedIndex == index,
+          active: context.watch<ChatProvider>().chatIndex == index,
           onTap: () {
-            setState(() {
-              _selectedIndex = index;
-            });
+            context.read<ChatProvider>().chatIndex = index;
           },
         );
       },
-      itemCount: widget.chatList.length,
+      itemCount: chatList.length,
     );
   }
 }

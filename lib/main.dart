@@ -7,6 +7,7 @@ import 'package:messeenger_flutter/modules/auth/screens/register_screen.dart';
 import 'package:messeenger_flutter/modules/auth/screens/reset_password.dart';
 import 'package:messeenger_flutter/modules/home/screens/default_home.dart';
 import 'package:messeenger_flutter/providers/auth_provider.dart';
+import 'package:messeenger_flutter/providers/chat_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -14,7 +15,14 @@ void main() {
     DevicePreview(
       enabled: !kReleaseMode,
       builder: (context) => MultiProvider(
-        providers: [ChangeNotifierProvider(create: (_) => AuthProvider())],
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => AuthProvider(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => ChatProvider(),
+          ),
+        ],
         child: const MyApp(),
       ),
     ),
@@ -27,7 +35,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Messeenger Client',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,

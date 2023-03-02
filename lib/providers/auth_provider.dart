@@ -7,7 +7,7 @@ class AuthProvider with ChangeNotifier {
   bool _logged = false;
   bool _tested = false;
 
-  late UserModel _currentUser = UserModel(
+  UserModel _currentUser = UserModel(
     firstName: '',
     lastName: '',
     email: '',
