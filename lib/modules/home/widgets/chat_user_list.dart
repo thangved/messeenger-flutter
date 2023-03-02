@@ -72,7 +72,7 @@ class ChatUserItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(100),
-              child: img.length != 0
+              child: img.isNotEmpty
                   ? Image.network(
                       img,
                       width: 36,

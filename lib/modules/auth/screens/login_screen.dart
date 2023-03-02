@@ -24,8 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Center(
           child: FittedBox(
             child: Container(
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               width: 360,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -40,7 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     "assets/logo.png",
                     width: 50,
                   ),
-                  Text(
+                  const Text(
                     "Đăng nhập",
                     style: TextStyle(
                       fontSize: 24,
@@ -49,39 +49,39 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(bottom: 10),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       color: Colors.black.withAlpha(10),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         label: Text("Tên đăng nhập hoặc Email"),
                         hintText: "user",
                         border: InputBorder.none,
                       ),
                       onChanged: (username) {
-                        this._username = username;
+                        _username = username;
                       },
                     ),
                   ),
                   Container(
-                    margin: EdgeInsets.only(bottom: 10),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    margin: const EdgeInsets.only(bottom: 10),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       color: Colors.black.withAlpha(10),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         label: Text("Mật khẩu"),
                         hintText: "******",
                         border: InputBorder.none,
                       ),
                       obscureText: true,
                       onChanged: (password) {
-                        this._password = password;
+                        _password = password;
                       },
                     ),
                   ),
@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 content: SingleChildScrollView(
                                   child: ListBody(
                                     children: [
-                                      Text(
+                                      const Text(
                                         'Thất bại',
                                         style: TextStyle(
                                           fontSize: 24,
@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                     },
-                                    child: Text('Đóng'),
+                                    child: const Text('Đóng'),
                                   )
                                 ],
                               );
@@ -130,17 +130,17 @@ class _LoginScreenState extends State<LoginScreen> {
                           );
                         }
                       },
-                      child: Text("Đăng nhập"),
+                      child: const Text("Đăng nhập"),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     children: [
-                      Text("Bạn chưa có tài khoản?"),
+                      const Text("Bạn chưa có tài khoản?"),
                       InkWell(
-                        child: Text(
+                        child: const Text(
                           "Đăng ký ngay",
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
@@ -160,7 +160,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Navigator.of(context)
                           .pushReplacementNamed('/reset-password');
                     },
-                    child: Text(
+                    child: const Text(
                       "Quên mật khẩu",
                       style: TextStyle(
                         fontWeight: FontWeight.bold,

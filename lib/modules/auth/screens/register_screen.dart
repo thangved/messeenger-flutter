@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/services/auth_service.dart';
 
 class RegisterScreen extends StatefulWidget {
-  RegisterScreen({super.key});
+  const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
@@ -32,26 +32,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
         child: Center(
           child: FittedBox(
             child: Container(
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               width: 360,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withAlpha(20), blurRadius: 20),
+                ],
+              ),
               child: _success
                   ? Column(
                       children: [
-                        Center(
+                        const Center(
                           child: Icon(
                             Icons.mail,
                             color: Colors.grey,
                             size: 36,
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Text(
                           'Vui lòng kiểm tra email của bạn để kích hoạt tài khoản ($_email)',
                         ),
-                        SizedBox(
+                  const SizedBox(
                           height: 10,
                         ),
                         ElevatedButton(
@@ -59,7 +66,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             Navigator.of(context)
                                 .pushReplacementNamed('/login');
                           },
-                          child: Text('Quay lại trang đăng nhập'),
+                          child: const Text('Quay lại trang đăng nhập'),
                         ),
                       ],
                     )
@@ -69,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           "assets/logo.png",
                           width: 50,
                         ),
-                        Text(
+                        const Text(
                           "Đăng ký",
                           style: TextStyle(
                             fontSize: 24,
@@ -78,14 +85,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.only(bottom: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           decoration: BoxDecoration(
                             color: Colors.black.withAlpha(10),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text("Họ"),
                               hintText: "Parker",
                               border: InputBorder.none,
@@ -96,14 +103,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.only(bottom: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           decoration: BoxDecoration(
                             color: Colors.black.withAlpha(10),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text("Tên"),
                               hintText: "Peter",
                               border: InputBorder.none,
@@ -114,14 +121,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.only(bottom: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           decoration: BoxDecoration(
                             color: Colors.black.withAlpha(10),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text("Email"),
                               hintText: "spiderman@maverl.com",
                               border: InputBorder.none,
@@ -132,14 +139,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.only(bottom: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           decoration: BoxDecoration(
                             color: Colors.black.withAlpha(10),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text("Tên đăng nhập"),
                               hintText: "spiderman",
                               prefix: Text('@'),
@@ -151,14 +158,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.only(bottom: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           decoration: BoxDecoration(
                             color: Colors.black.withAlpha(10),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text("Mật khẩu"),
                               hintText: "******",
                               border: InputBorder.none,
@@ -170,14 +177,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(bottom: 10),
-                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          margin: const EdgeInsets.only(bottom: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
                           decoration: BoxDecoration(
                             color: Colors.black.withAlpha(10),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: TextFormField(
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                               label: Text("Nhập lại mật khẩu"),
                               hintText: "******",
                               border: InputBorder.none,
@@ -213,7 +220,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       content: SingleChildScrollView(
                                         child: ListBody(
                                           children: [
-                                            Text(
+                                            const Text(
                                               'Thất bại',
                                               style: TextStyle(
                                                 fontSize: 24,
@@ -229,7 +236,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           onPressed: () {
                                             Navigator.of(context).pop();
                                           },
-                                          child: Text('Đóng'),
+                                          child: const Text('Đóng'),
                                         )
                                       ],
                                     );
@@ -237,17 +244,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 );
                               }
                             },
-                            child: Text("Đăng ký"),
+                            child: const Text("Đăng ký"),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         Row(
                           children: [
-                            Text("Bạn đã có tài khoản?"),
+                            const Text("Bạn đã có tài khoản?"),
                             InkWell(
-                              child: Text(
+                              child: const Text(
                                 "Đăng nhập ngay",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
@@ -263,13 +270,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         )
                       ],
                     ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(color: Colors.black.withAlpha(20), blurRadius: 20),
-                ],
-              ),
             ),
           ),
         ),

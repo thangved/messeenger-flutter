@@ -13,8 +13,8 @@ class ResetPasswordScreen extends StatelessWidget {
         child: Center(
           child: FittedBox(
             child: Container(
-              padding: EdgeInsets.all(20),
-              margin: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
+              margin: const EdgeInsets.all(20),
               width: 360,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -30,7 +30,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pushReplacementNamed('/login');
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         Icons.arrow_back_ios_new,
                       ),
                       tooltip: 'Quay lại đăng nhập',
@@ -41,7 +41,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     "assets/logo.png",
                     width: 50,
                   ),
-                  Text(
+                  const Text(
                     "Đặt lại mật khẩu",
                     style: TextStyle(
                       fontSize: 24,
@@ -49,27 +49,27 @@ class ResetPasswordScreen extends StatelessWidget {
                       height: 3,
                     ),
                   ),
-                  Text(
+                  const Text(
                       'Vui lòng nhập địa chỉ email mà bạn đã sử dụng để đăng ký tài khoản'),
                   Container(
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                       bottom: 10,
                       top: 10,
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: BoxDecoration(
                       color: Colors.black.withAlpha(10),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: TextFormField(
                       keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         label: Text("Email"),
                         hintText: "spiderman@marvel.com",
                         border: InputBorder.none,
                       ),
                       onChanged: (email) {
-                        this._email = email;
+                        _email = email;
                       },
                     ),
                   ),
@@ -88,7 +88,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                   child: AlertDialog(
                                     content: ListBody(
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Thành công',
                                           style: TextStyle(
                                             fontSize: 24,
@@ -103,7 +103,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('Đóng'),
+                                        child: const Text('Đóng'),
                                       )
                                     ],
                                   ),
@@ -117,7 +117,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                   child: AlertDialog(
                                     content: ListBody(
                                       children: [
-                                        Text(
+                                        const Text(
                                           'Thất bại',
                                           style: TextStyle(
                                             fontSize: 24,
@@ -132,7 +132,7 @@ class ResetPasswordScreen extends StatelessWidget {
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
-                                        child: Text('Đóng'),
+                                        child: const Text('Đóng'),
                                       )
                                     ],
                                   ),
@@ -140,7 +140,7 @@ class ResetPasswordScreen extends StatelessWidget {
                               });
                         }
                       },
-                      child: Text('Xác nhận'),
+                      child: const Text('Xác nhận'),
                     ),
                   )
                 ],

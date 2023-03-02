@@ -41,8 +41,8 @@ class ProfileSession extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            currentUser.lastName + ' ' + currentUser.firstName,
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                            '${currentUser.lastName} ${currentUser.firstName}',
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           Text(currentUser.username)
                         ],

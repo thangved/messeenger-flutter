@@ -36,10 +36,10 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (context) => context.watch<AuthProvider>().logged
-            ? DefaultHome()
-            : LoginScreen(),
-        '/login': (context) => LoginScreen(),
-        '/register': (context) => RegisterScreen(),
+            ? const DefaultHome()
+            : const LoginScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
         '/reset-password': (context) => ResetPasswordScreen(),
         // '/profile': (context) => ProfileScreen(),
       },

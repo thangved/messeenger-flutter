@@ -26,7 +26,7 @@ class _ChatUserScreenState extends State<ChatUserScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Tin nhắn',
               style: TextStyle(
                 fontSize: 20,
