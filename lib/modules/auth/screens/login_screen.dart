@@ -148,8 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.of(context)
-                              .pushReplacementNamed('/register');
+                          Navigator.of(context).pushNamed('/register');
                         },
                       )
                     ],
@@ -157,8 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   const Divider(),
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context)
-                          .pushReplacementNamed('/reset-password');
+                      Navigator.of(context).pushNamed('/reset-password');
                     },
                     child: const Text(
                       "Quên mật khẩu",

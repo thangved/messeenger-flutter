@@ -58,13 +58,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         Text(
                           'Vui lòng kiểm tra email của bạn để kích hoạt tài khoản ($_email)',
                         ),
-                  const SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Navigator.of(context)
-                                .pushReplacementNamed('/login');
+                            Navigator.of(context).pop();
                           },
                           child: const Text('Quay lại trang đăng nhập'),
                         ),

@@ -28,7 +28,7 @@ class ResetPasswordScreen extends StatelessWidget {
                   AppBar(
                     leading: IconButton(
                       onPressed: () {
-                        Navigator.of(context).pushReplacementNamed('/login');
+                        Navigator.of(context).pop();
                       },
                       icon: const Icon(
                         Icons.arrow_back_ios_new,
