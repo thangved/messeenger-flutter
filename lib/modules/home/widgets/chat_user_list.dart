@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:messeenger_flutter/models/chat_group_model.dart';
 
 class ChatUserList extends StatefulWidget {
   const ChatUserList({
     Key? key,
+    required this.chatList,
   }) : super(key: key);
+
+  final List<ChatGroupModel> chatList;
 
   @override
   State<ChatUserList> createState() => _ChatUserListState();
@@ -14,44 +18,22 @@ class _ChatUserListState extends State<ChatUserList> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10),
-      child: Container(
-        width: 300,
-        padding: const EdgeInsets.all(10),
-        height: double.maxFinite,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: const BorderRadius.all(Radius.circular(20)),
-            border: Border.all(color: Colors.black.withAlpha(30))),
-        child: ListView(
-          children: [
-            ChatUserItem(
-              img: 'https://yt3.ggpht.com/-4q2Qv2ST2eeXf4ZiNDQ-h7FZURUMaB8-h_mD6z0hJypffploao8K9Kj_wZhPgbtcWCdr1j8=s88-c-k-c0x00ffffff-no-rj-mo',
-              name: 'Kim Minh Thắng',
-              lastMessage: 'Đây nè bà',
-              active: _selectedIndex == 0,
-              onTap: () {
-                setState(() {
-                  _selectedIndex = 0;
-                });
-              },
-            ),
-            ChatUserItem(
-              img:
-                  'https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y',
-              name: 'Minh Hí',
-              lastMessage: 'Bạn: Hí ae',
-              active: _selectedIndex == 1,
-              onTap: () {
-                setState(() {
-                  _selectedIndex = 1;
-                });
-              },
-            ),
-          ],
-        ),
-      ),
+    return ListView.builder(
+      itemBuilder: (item, index) {
+        final group = widget.chatList[index];
+        return ChatUserItem(
+          img: group.avatar,
+          name: group.name,
+          lastMessage: group.lastMessage.content,
+          active: _selectedIndex == index,
+          onTap: () {
+            setState(() {
+              _selectedIndex = index;
+            });
+          },
+        );
+      },
+      itemCount: widget.chatList.length,
     );
   }
 }
@@ -90,11 +72,16 @@ class ChatUserItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(100),
-              child: Image.network(
-                img,
-                width: 40,
-                height: 40,
-              ),
+              child: img.length != 0
+                  ? Image.network(
+                      img,
+                      width: 36,
+                      height: 36,
+                      fit: BoxFit.cover,
+                    )
+                  : CircleAvatar(
+                      child: Text(name[0].toUpperCase()),
+                    ),
             ),
             Expanded(
               child: Container(

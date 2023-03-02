@@ -27,6 +27,13 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: EdgeInsets.all(20),
               margin: EdgeInsets.all(20),
               width: 360,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(color: Colors.black.withAlpha(20), blurRadius: 20),
+                ],
+              ),
               child: Column(
                 children: [
                   Image.asset(
@@ -92,7 +99,35 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           Navigator.of(context).pushReplacementNamed('/');
                         } catch (error) {
-                          print(error.toString());
+                          showDialog(
+                            context: context,
+                            builder: (context) {
+                              return AlertDialog(
+                                content: SingleChildScrollView(
+                                  child: ListBody(
+                                    children: [
+                                      Text(
+                                        'Lỗi',
+                                        style: TextStyle(
+                                          height: 3,
+                                          fontSize: 24,
+                                        ),
+                                      ),
+                                      Text(error.toString())
+                                    ],
+                                  ),
+                                ),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('Đóng'),
+                                  )
+                                ],
+                              );
+                            },
+                          );
                         }
                       },
                       child: Text("Đăng nhập"),
@@ -113,18 +148,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                         onTap: () {
-                          Navigator.of(context).pushReplacementNamed('/register');
+                          Navigator.of(context)
+                              .pushReplacementNamed('/register');
                         },
                       )
                     ],
                   ),
-                ],
-              ),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(color: Colors.black.withAlpha(20), blurRadius: 20),
                 ],
               ),
             ),

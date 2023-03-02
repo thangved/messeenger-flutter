@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:messeenger_flutter/modules/home/widgets/chat_user_list.dart';
+import 'package:messeenger_flutter/modules/home/screens/chat_user_screen.dart';
 import 'package:messeenger_flutter/modules/home/widgets/desktop_navigation.dart';
 import 'package:messeenger_flutter/modules/home/widgets/friend_list.dart';
 import 'package:messeenger_flutter/modules/home/widgets/main_chat.dart';
@@ -16,7 +16,7 @@ class _DefaultHomeState extends State<DefaultHome> {
 
   @override
   Widget build(BuildContext context) {
-    const widgets = [ChatUserList(), FriendList(), Text('Yêu cầu kết bạn')];
+    const widgets = [ChatUserScreen(), FriendList(), Text('Yêu cầu kết bạn')];
     return Scaffold(
       body: SafeArea(
         child: Row(

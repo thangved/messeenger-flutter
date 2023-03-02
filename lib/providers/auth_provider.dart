@@ -16,6 +16,7 @@ class AuthProvider with ChangeNotifier {
   UserModel get currentUser => _currentUser;
 
   bool get logged {
+    if (_logged) return _logged;
     setCurrentUser();
     return _logged;
   }
