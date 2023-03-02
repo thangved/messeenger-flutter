@@ -19,7 +19,7 @@ class _ChatUserListState extends State<ChatUserList> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemBuilder: (item, index) {
+      itemBuilder: (context, index) {
         final group = widget.chatList[index];
         return ChatUserItem(
           img: group.avatar,

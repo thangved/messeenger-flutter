@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:messeenger_flutter/modules/auth/screens/login_screen.dart';
 import 'package:messeenger_flutter/modules/auth/screens/register_screen.dart';
+import 'package:messeenger_flutter/modules/auth/screens/reset_password.dart';
 import 'package:messeenger_flutter/modules/home/screens/default_home.dart';
 import 'package:messeenger_flutter/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
             : LoginScreen(),
         '/login': (context) => LoginScreen(),
         '/register': (context) => RegisterScreen(),
+        '/reset-password': (context) => ResetPasswordScreen(),
         // '/profile': (context) => ProfileScreen(),
       },
     );

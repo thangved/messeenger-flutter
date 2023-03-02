@@ -22,19 +22,35 @@ class _ChatUserScreenState extends State<ChatUserScreen> {
             color: Colors.white,
             borderRadius: const BorderRadius.all(Radius.circular(20)),
             border: Border.all(color: Colors.black.withAlpha(30))),
-        child: FutureBuilder(
-          future: ChatGroupService.getAll(),
-          builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-            if (snapshot.hasError) {
-              print(snapshot.error);
-            }
-
-            return snapshot.hasData
-                ? ChatUserList(chatList: snapshot.data)
-                : const Center(
-                    child: CircularProgressIndicator(),
-                  );
-          },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Tin nhắn',
+              style: TextStyle(
+                fontSize: 20,
+                height: 2,
+              ),
+            ),
+            Flexible(
+              flex: 1,
+              child: FutureBuilder(
+                future: ChatGroupService.getAll(),
+                builder:
+                    (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                  if (snapshot.hasError) {
+                    print(snapshot.error);
+                  }
+                  return snapshot.hasData
+                      ? ChatUserList(chatList: snapshot.data)
+                      : const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
