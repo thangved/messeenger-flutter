@@ -107,10 +107,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                   child: ListBody(
                                     children: [
                                       Text(
-                                        'Lỗi',
+                                        'Thất bại',
                                         style: TextStyle(
-                                          height: 3,
                                           fontSize: 24,
+                                          height: 3,
                                         ),
                                       ),
                                       Text(error.toString())
@@ -153,6 +153,20 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       )
                     ],
+                  ),
+                  const Divider(),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushReplacementNamed('/reset-password');
+                    },
+                    child: Text(
+                      "Quên mật khẩu",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
+                    ),
                   ),
                 ],
               ),

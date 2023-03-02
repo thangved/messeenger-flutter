@@ -47,4 +47,17 @@ class AuthService {
 
     throw jsonDecode(res.body)['message'];
   }
+
+  static resetPassword({email}) async {
+    final res =
+        await client.post('$baseUrl/auth/reset-password'.toUri(), body: {
+      "email": email,
+    });
+
+    if (res.statusCode == 200) {
+      return jsonDecode(res.body);
+    }
+
+    throw jsonDecode(res.body)['message'];
+  }
 }
