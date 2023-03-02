@@ -3,11 +3,18 @@ import 'package:messeenger_flutter/providers/auth-provider.dart';
 import 'package:messeenger_flutter/services/auth-service.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
-  String _username = "";
-  String _password = "";
+class LoginScreen extends StatefulWidget {
 
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  String _username = "";
+
+  String _password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -83,8 +90,11 @@ class LoginScreen extends StatelessWidget {
 
                           context.read<AuthProvider>().accessToken =
                               response['tokens']['accessToken'];
+
                           Navigator.of(context).pushReplacementNamed('/');
-                        } catch (error) {}
+                        } catch (error) {
+                          print(error.toString());
+                        }
                       },
                       child: Text("Đăng nhập"),
                     ),
