@@ -6,10 +6,16 @@ import 'package:messeenger_flutter/models/user_model.dart';
 import 'package:messeenger_flutter/utils/client_util.dart';
 
 class AuthService {
-  static login(username, password, {type = 'username'}) async {
+  static login(usernameOrEmail, password) async {
+    final type =
+        RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                .hasMatch(usernameOrEmail)
+            ? "email"
+            : "username";
+
     final response =
         await client.post('$baseUrl/auth?type=$type'.toUri(), body: {
-      'username': username,
+      type: usernameOrEmail,
       'password': password,
     });
 

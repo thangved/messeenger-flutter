@@ -50,6 +50,7 @@ class ProfileSession extends StatelessWidget {
                     ),
                     IconButton(
                         onPressed: () {
+                          Navigator.of(context).pop();
                           Navigator.of(context).push(
                             MaterialPageRoute(
                                 builder: (context) => const ProfileScreen()),
@@ -58,6 +59,7 @@ class ProfileSession extends StatelessWidget {
                         icon: const Icon(Icons.settings_outlined)),
                     IconButton(
                       onPressed: () {
+                        Navigator.of(context).pop();
                         context.read<AuthProvider>().logout();
                       },
                       icon: const Icon(Icons.logout_rounded),

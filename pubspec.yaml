@@ -44,6 +44,7 @@ dependencies:
   http: ^0.13.5
   shared_preferences: ^2.0.18
   http_interceptor: ^1.0.2
+  debounce_throttle: ^2.0.0
 
 dev_dependencies:
   flutter_test:

@@ -58,7 +58,6 @@ class ChatUserItem extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.only(bottom: 5),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
           color: backgroundColor,
         ),
         child: Row(

@@ -13,26 +13,18 @@ class MainChat extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: const EdgeInsets.only(
-          top: 10,
-          right: 10,
-          bottom: 10,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black.withAlpha(30)),
+          color: Colors.white,
         ),
-        child: Container(
-          decoration: BoxDecoration(
-            border: Border.all(color: Colors.black.withAlpha(30)),
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Scaffold(
-              appBar: AppBar(
-                title: const MainChatTitle(),
-              ),
-              body: const MainChatBody(),
-              backgroundColor: Colors.blue.withAlpha(10),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: Scaffold(
+            appBar: AppBar(
+              title: const MainChatTitle(),
             ),
+            body: const MainChatBody(),
+            backgroundColor: Colors.blue.withAlpha(10),
           ),
         ),
       ),
