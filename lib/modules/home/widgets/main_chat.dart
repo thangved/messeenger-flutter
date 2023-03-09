@@ -52,9 +52,9 @@ class MainChatTitle extends StatelessWidget {
         ),
         Container(
           padding: const EdgeInsets.only(left: 20),
-          child: Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
+            children: [
               Text(
                 'Kim Minh Thắng',
                 style: TextStyle(
@@ -81,17 +81,17 @@ class MainChatBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       children: [
         Expanded(
           child: Column(
-            children: const [
+            children: [
               MessageList(),
               BottomChatForm(),
             ],
           ),
         ),
-        const UserInfo()
+        UserInfo()
       ],
     );
   }

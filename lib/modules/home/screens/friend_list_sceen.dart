@@ -63,7 +63,7 @@ class FriendListScreen extends StatelessWidget {
 
               return snapshot.hasData
                   ? FriendList(userList: snapshot.data)
-                  : Center(
+                  : const Center(
                       child: CircularProgressIndicator(),
                     );
             },

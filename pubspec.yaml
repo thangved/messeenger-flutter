@@ -104,3 +104,9 @@ flutter_icons:
   linux: true
   android: true
   web: true
+
+msix_config:
+  display_name: Messeenger
+  msix_version: 1.0.0.0
+  logo_path: "assets/icon.png"
+  publisher_display_name: "Kim Minh Thang"
