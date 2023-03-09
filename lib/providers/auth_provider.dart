@@ -8,11 +8,14 @@ class AuthProvider with ChangeNotifier {
   bool _tested = false;
 
   UserModel _currentUser = UserModel(
+    id: '',
     firstName: '',
     lastName: '',
     email: '',
     avatar: '',
     username: '',
+    friend: false,
+    requested: false,
   );
 
   UserModel get currentUser => _currentUser;

@@ -6,7 +6,7 @@ import 'package:messeenger_flutter/models/user_model.dart';
 import 'package:messeenger_flutter/utils/client_util.dart';
 
 class UserService {
-  static Future<List<UserModel>> find(String searchText) async {
+  static Future<List<UserModel>> search(String searchText) async {
     final response =
         await client.get('$baseUrl/users/search?q=$searchText'.toUri());
 

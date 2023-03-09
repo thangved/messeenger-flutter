@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/modules/home/widgets/user_info.dart';
+import 'package:messeenger_flutter/providers/chat_provider.dart';
+import 'package:messeenger_flutter/services/chat_group_service.dart';
+import 'package:provider/provider.dart';
 
+import '../../../models/chat_group_model.dart';
 import 'bottom_chat_form.dart';
 import 'message_list.dart';
 
@@ -11,31 +15,47 @@ class MainChat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black.withAlpha(30)),
-          color: Colors.white,
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(20),
-          child: Scaffold(
-            appBar: AppBar(
-              title: const MainChatTitle(),
-            ),
-            body: const MainChatBody(),
-            backgroundColor: Colors.blue.withAlpha(10),
-          ),
-        ),
-      ),
+    return FutureBuilder(
+      future: ChatGroupService.getById(context.watch<ChatProvider>().chatId),
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {}
+
+        return snapshot.hasData
+            ? Expanded(
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black.withAlpha(30)),
+                    color: Colors.white,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Scaffold(
+                      appBar: AppBar(
+                        title: MainChatTitle(
+                          chatGroup: snapshot.data,
+                        ),
+                      ),
+                      body: const MainChatBody(),
+                      backgroundColor: Colors.blue.withAlpha(10),
+                    ),
+                  ),
+                ),
+              )
+            : const Center(
+                child: CircularProgressIndicator(),
+              );
+      },
     );
   }
 }
 
 class MainChatTitle extends StatelessWidget {
-  const MainChatTitle({
+  MainChatTitle({
     Key? key,
+    this.chatGroup,
   }) : super(key: key);
+
+  ChatGroupModel? chatGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -43,27 +63,31 @@ class MainChatTitle extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(100),
-          child: Image.network(
-            'https://yt3.ggpht.com/-4q2Qv2ST2eeXf4ZiNDQ-h7FZURUMaB8-h_mD6z0hJypffploao8K9Kj_wZhPgbtcWCdr1j8=s88-c-k-c0x00ffffff-no-rj-mo',
-            width: 40,
-            height: 40,
-            fit: BoxFit.cover,
-          ),
+          child: chatGroup?.avatar == null
+              ? Image.network(
+                  chatGroup?.avatar ?? '',
+                  width: 36,
+                  height: 36,
+                  fit: BoxFit.cover,
+                )
+              : CircleAvatar(
+                  child: Text(chatGroup?.name.toUpperCase()[0] ?? ''),
+                ),
         ),
         Container(
           padding: const EdgeInsets.only(left: 20),
-          child: const Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Kim Minh Thắng',
+                chatGroup?.name ?? '',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                '@thangved',
+                'Đang hoạt động',
                 style: TextStyle(fontSize: 14),
               ),
             ],
@@ -81,7 +105,7 @@ class MainChatBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       children: [
         Expanded(
           child: Column(

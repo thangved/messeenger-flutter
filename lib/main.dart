@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Messeenger Client',
+      title: 'Messeenger',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -49,7 +49,6 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const LoginScreen(),
         '/register': (context) => const RegisterScreen(),
         '/reset-password': (context) => ResetPasswordScreen(),
-        // '/profile': (context) => ProfileScreen(),
       },
     );
   }

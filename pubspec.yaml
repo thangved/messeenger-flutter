@@ -45,6 +45,7 @@ dependencies:
   shared_preferences: ^2.0.18
   http_interceptor: ^1.0.2
   debounce_throttle: ^2.0.0
+  confirm_dialog: ^1.0.1
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,8 @@
+import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/models/user_model.dart';
+
+import '../../../services/friend_service.dart';
 
 class FriendList extends StatelessWidget {
   const FriendList({super.key, required this.userList});
@@ -64,8 +67,32 @@ class FriendList extends StatelessWidget {
                         ),
                       ),
                       IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Icons.person_remove_outlined),
+                        onPressed: () async {
+                          try {
+                            if (await confirm(
+                              context,
+                              title: Text('Cảnh báo'),
+                              content: Text(
+                                  'Bạn chắc chắn muốn hủy kết bạn với ${userList[index].firstName}?'),
+                              textOK: Text('Hủy kết bạn'),
+                              textCancel: Text('Không'),
+                            )) {
+                              await FriendService.removeFriend(
+                                  userList[index].id);
+                            }
+                          } catch (e) {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  content: Text(e.toString()),
+                                );
+                              },
+                            );
+                          }
+                        },
+                        icon: const Icon(Icons.person_remove),
+                        tooltip: 'Hủy kết bạn',
                       ),
                     ],
                   ),

@@ -17,4 +17,14 @@ class ChatGroupService {
 
     throw jsonDecode(response.body);
   }
+
+  static Future<ChatGroupModel> getById(String? chatId) async {
+    final res = await client.get('$baseUrl/groups/$chatId'.toUri());
+
+    if (res.statusCode == 200) {
+      return ChatGroupModel.fromJson(jsonDecode(res.body));
+    }
+
+    throw jsonDecode(res.body)['message'];
+  }
 }

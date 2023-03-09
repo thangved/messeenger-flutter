@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class ChatProvider extends ChangeNotifier {
-  int _chatIndex = -1;
+  String? _chatId;
 
-  get chatIndex => _chatIndex;
+  get chatId => _chatId;
 
-  set chatIndex(index) {
-    _chatIndex = index;
+  set chatId(id) {
+    _chatId = id;
     notifyListeners();
   }
 }

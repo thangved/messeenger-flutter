@@ -6,8 +6,8 @@ import 'package:messeenger_flutter/models/user_model.dart';
 import 'package:messeenger_flutter/utils/client_util.dart';
 
 class FriendService {
-  static void requestAddFriend(userId) async {
-    final res = await client.post('$baseUrl/friend/$userId'.toUri());
+  static requestAddFriend(userId) async {
+    final res = await client.post('$baseUrl/friends/$userId'.toUri());
 
     if (res.statusCode != 200) {
       throw jsonDecode(res.body)['message'];
@@ -15,15 +15,15 @@ class FriendService {
   }
 
   static void acceptAddFriend(userId) async {
-    final res = await client.put('$baseUrl/friend/$userId'.toUri());
+    final res = await client.put('$baseUrl/friends/$userId'.toUri());
 
     if (res.statusCode != 200) {
       throw jsonDecode(res.body)['message'];
     }
   }
 
-  static void removeFriend(userId) async {
-    final res = await client.delete('$baseUrl/friend/$userId'.toUri());
+  static removeFriend(userId) async {
+    final res = await client.delete('$baseUrl/friends/$userId'.toUri());
 
     if (res.statusCode != 200) {
       throw jsonDecode(res.body)['message'];

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/models/chat_group_model.dart';
+import 'package:messeenger_flutter/models/message_model.dart';
 import 'package:messeenger_flutter/providers/chat_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -17,13 +18,10 @@ class ChatUserList extends StatelessWidget {
       itemBuilder: (context, index) {
         final group = chatList[index];
         return ChatUserItem(
+          id: group.id,
           img: group.avatar,
           name: group.name,
-          lastMessage: group.lastMessage.content,
-          active: context.watch<ChatProvider>().chatIndex == index,
-          onTap: () {
-            context.read<ChatProvider>().chatIndex = index;
-          },
+          lastMessage: group.lastMessage,
         );
       },
       itemCount: chatList.length,
@@ -31,24 +29,29 @@ class ChatUserList extends StatelessWidget {
   }
 }
 
-class ChatUserItem extends StatelessWidget {
+class ChatUserItem extends StatefulWidget {
   const ChatUserItem({
     Key? key,
+    required this.id,
     required this.img,
     required this.name,
     required this.lastMessage,
-    this.active = false,
-    required this.onTap,
   }) : super(key: key);
 
+  final String id;
   final String img;
   final String name;
-  final String lastMessage;
-  final bool active;
-  final Function onTap;
+  final MessageModel? lastMessage;
 
   @override
+  State<ChatUserItem> createState() => _ChatUserItemState();
+}
+
+class _ChatUserItemState extends State<ChatUserItem> {
+  @override
   Widget build(BuildContext context) {
+    bool active = widget.id == context.watch<ChatProvider>().chatId;
+
     final textColor = active ? Colors.blue : Colors.black;
     final backgroundColor =
         active ? Colors.blue.withAlpha(20) : Colors.transparent;
@@ -64,15 +67,15 @@ class ChatUserItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(100),
-              child: img.isNotEmpty
+              child: widget.img.isNotEmpty
                   ? Image.network(
-                      img,
+                      widget.img,
                       width: 36,
                       height: 36,
                       fit: BoxFit.cover,
                     )
                   : CircleAvatar(
-                      child: Text(name[0].toUpperCase()),
+                      child: Text(widget.name[0].toUpperCase()),
                     ),
             ),
             Expanded(
@@ -82,18 +85,21 @@ class ChatUserItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      name,
+                      widget.name,
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: textColor,
                       ),
                     ),
-                    Text(
-                      lastMessage,
-                      style: TextStyle(
-                        color: textColor,
-                      ),
-                    ),
+                    if (widget.lastMessage != null)
+                      Text(
+                        '${widget.lastMessage?.createdBy.firstName}${(widget.lastMessage?.deletedAt != null) ? '' ' đã xóa 1 tin nhắn' : widget.lastMessage?.type == 'file' ? ' đã gửi 1 ảnh' : ': ${widget.lastMessage?.content ?? ''}'}',
+                        style: TextStyle(
+                          color: textColor,
+                        ),
+                      )
+                    else
+                      const Text("Đoạn chat chưa có tin nhắn"),
                   ],
                 ),
               ),
@@ -102,7 +108,7 @@ class ChatUserItem extends StatelessWidget {
         ),
       ),
       onTap: () {
-        onTap();
+        context.read<ChatProvider>().chatId = widget.id;
       },
     );
   }

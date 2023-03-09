@@ -1,11 +1,10 @@
-// ignore_for_file: cast_from_null_always_fails
-
 import 'package:messeenger_flutter/models/user_model.dart';
 
 class MessageModel {
   String id;
   String content;
   String type;
+  String? deletedAt;
 
   UserModel createdBy;
 
@@ -14,6 +13,7 @@ class MessageModel {
     required this.content,
     required this.type,
     required this.createdBy,
+    required this.deletedAt,
   });
 
   factory MessageModel.fromJson(json) {
@@ -22,6 +22,7 @@ class MessageModel {
       content: json['content'] ?? '',
       type: json['type'],
       createdBy: UserModel.fromJson(json['createdBy']),
+      deletedAt: json['deletedAt'],
     );
   }
 }

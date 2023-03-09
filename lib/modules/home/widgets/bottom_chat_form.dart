@@ -23,20 +23,14 @@ class BottomChatForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           IconButton(
-            onPressed: () async {},
-            icon: const Icon(
-              Icons.add_circle_rounded,
-              color: Colors.blue,
-            ),
-          ),
-          IconButton(
             onPressed: () async {
-                  await FilePicker.platform.pickFiles(type: FileType.image);
+              await FilePicker.platform.pickFiles(type: FileType.image);
             },
             icon: const Icon(
               Icons.photo_rounded,
               color: Colors.blue,
             ),
+            tooltip: 'Chọn ảnh',
           ),
           Expanded(
             child: Container(

@@ -2,14 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/modules/home/widgets/chat_user_list.dart';
 import 'package:messeenger_flutter/services/chat_group_service.dart';
 
-class ChatUserScreen extends StatefulWidget {
+class ChatUserScreen extends StatelessWidget {
   const ChatUserScreen({super.key});
 
-  @override
-  State<ChatUserScreen> createState() => _ChatUserScreenState();
-}
-
-class _ChatUserScreenState extends State<ChatUserScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
