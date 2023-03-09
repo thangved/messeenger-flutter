@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/modules/home/screens/add_friend_screen.dart';
+import 'package:messeenger_flutter/modules/home/widgets/friend_list.dart';
+import 'package:messeenger_flutter/services/friend_service.dart';
 
 class FriendListScreen extends StatelessWidget {
   const FriendListScreen({super.key});
@@ -19,11 +21,11 @@ class FriendListScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.all(20),
+            padding: const EdgeInsets.all(20),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Expanded(
+                const Expanded(
                   child: Text(
                     'Bạn bè',
                     style: TextStyle(
@@ -36,14 +38,35 @@ class FriendListScreen extends StatelessWidget {
                   onPressed: () {
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return AddFriendScreen();
+                      return const AddFriendScreen();
                     }));
                   },
-                  icon: Icon(Icons.person_add_alt),
+                  icon: const Icon(Icons.person_add_alt),
                   tooltip: 'Thêm bạn bè',
                 )
               ],
             ),
+          ),
+          FutureBuilder(
+            future: FriendService.getAllFriends(),
+            builder: (context, AsyncSnapshot<dynamic> snapshot) {
+              if (snapshot.hasError) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(snapshot.error.toString()),
+                    );
+                  },
+                );
+              }
+
+              return snapshot.hasData
+                  ? FriendList(userList: snapshot.data)
+                  : Center(
+                      child: CircularProgressIndicator(),
+                    );
+            },
           )
         ],
       ),

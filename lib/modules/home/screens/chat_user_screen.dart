@@ -24,8 +24,8 @@ class _ChatUserScreenState extends State<ChatUserScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.all(20),
-            child: Text(
+            padding: const EdgeInsets.all(20),
+            child: const Text(
               'Tin nhắn',
               style: TextStyle(
                 fontSize: 20,
@@ -39,7 +39,14 @@ class _ChatUserScreenState extends State<ChatUserScreen> {
               future: ChatGroupService.getAll(),
               builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
                 if (snapshot.hasError) {
-                  print(snapshot.error);
+                  showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text(snapshot.error.toString()),
+                      );
+                    },
+                  );
                 }
                 return snapshot.hasData
                     ? ChatUserList(chatList: snapshot.data)

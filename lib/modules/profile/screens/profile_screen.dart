@@ -107,6 +107,7 @@ class ProfileScreen extends StatelessWidget {
                   ),
                   child: TextFormField(
                     keyboardType: TextInputType.emailAddress,
+                    enabled: false,
                     decoration: const InputDecoration(
                       labelText: 'Email',
                       hintText: 'spiderman@marvel.com',

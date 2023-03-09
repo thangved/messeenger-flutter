@@ -18,8 +18,8 @@ class RequestListScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.all(20),
-            child: Text(
+            padding: const EdgeInsets.all(20),
+            child: const Text(
               'Yêu cầu kết bạn',
               style: TextStyle(
                 fontSize: 20,

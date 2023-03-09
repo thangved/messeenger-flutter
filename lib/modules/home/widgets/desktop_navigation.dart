@@ -18,7 +18,6 @@ class _DesktopNavigationState extends State<DesktopNavigation> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _selectedIndex = 0;
   }
@@ -60,6 +59,8 @@ class _DesktopNavigationState extends State<DesktopNavigation> {
             child: Image.network(
               currentUser.avatar,
               width: 40,
+              height: 40,
+              fit: BoxFit.cover,
             ),
           ),
           onTap: () {

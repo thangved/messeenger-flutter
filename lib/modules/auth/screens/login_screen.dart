@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/providers/auth_provider.dart';
 import 'package:messeenger_flutter/services/auth_service.dart';
@@ -17,8 +19,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -92,10 +92,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () async {
                         try {
                           final response =
-                              await AuthService.login(_username, _password);
+                          await AuthService.login(_username, _password);
 
                           context.read<AuthProvider>().accessToken =
-                              response['tokens']['accessToken'];
+                          response['tokens']['accessToken'];
 
                           Navigator.of(context).pushReplacementNamed('/');
                         } catch (error) {

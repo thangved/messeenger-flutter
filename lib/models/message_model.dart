@@ -19,7 +19,7 @@ class MessageModel {
   factory MessageModel.fromJson(json) {
     return MessageModel(
       id: json['_id'],
-      content: json['content'],
+      content: json['content'] ?? '',
       type: json['type'],
       createdBy: UserModel.fromJson(json['createdBy']),
     );

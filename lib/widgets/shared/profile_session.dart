@@ -29,11 +29,8 @@ class ProfileSession extends StatelessWidget {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(100),
-                      child: Image.network(
-                        currentUser.avatar,
-                        width: 40,
-                        height: 40,
-                      ),
+                      child: Image.network(currentUser.avatar,
+                          width: 40, height: 40, fit: BoxFit.cover),
                     ),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10),

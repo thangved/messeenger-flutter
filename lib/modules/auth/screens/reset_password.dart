@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/services/auth_service.dart';
 
@@ -80,7 +82,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       onPressed: () async {
                         try {
                           final res =
-                              await AuthService.resetPassword(email: _email);
+                          await AuthService.resetPassword(email: _email);
                           showDialog(
                               context: context,
                               builder: (context) {

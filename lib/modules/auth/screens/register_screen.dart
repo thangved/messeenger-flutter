@@ -25,8 +25,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -200,7 +198,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: ElevatedButton(
                             onPressed: () async {
                               try {
-                                final res = await AuthService.register(
+                                await AuthService.register(
                                   firstName: _firstName,
                                   lastName: _lastName,
                                   email: _email,
