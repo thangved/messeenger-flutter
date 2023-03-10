@@ -17,7 +17,7 @@ class AddFriendScreen extends StatefulWidget {
 
 class _AddFriendScreenState extends State<AddFriendScreen> {
   final _debouncer =
-  Debouncer<String>(const Duration(milliseconds: 500), initialValue: '');
+      Debouncer<String>(const Duration(milliseconds: 500), initialValue: '');
   List<UserModel> _userList = [];
   bool _searched = true;
 
