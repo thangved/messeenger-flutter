@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:messeenger_flutter/models/chat_group_model.dart';
 
 class UserInfo extends StatelessWidget {
-  const UserInfo({
+  UserInfo({
     Key? key,
+    this.chatGroup,
   }) : super(key: key);
+
+  ChatGroupModel? chatGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -25,24 +29,22 @@ class UserInfo extends StatelessWidget {
             padding: const EdgeInsets.all(10),
             child: Column(
               children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
-                  child: Image.network(
-                    'https://yt3.ggpht.com/-4q2Qv2ST2eeXf4ZiNDQ-h7FZURUMaB8-h_mD6z0hJypffploao8K9Kj_wZhPgbtcWCdr1j8=s88-c-k-c0x00ffffff-no-rj-mo',
-                    width: 64,
-                    height: 64,
-                    fit: BoxFit.cover,
-                  ),
+                CircleAvatar(
+                  backgroundImage: chatGroup?.avatar != null
+                      ? NetworkImage(chatGroup?.avatar ?? '')
+                      : null,
+                  radius: 64,
+                  child: chatGroup?.avatar == null
+                      ? Text(chatGroup?.name.toUpperCase()[0] ?? '')
+                      : null,
                 ),
-                const Text(
-                  'Kim Minh Thắng',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                Text(
+                  '${chatGroup?.name}',
+                  style: const TextStyle(
+                    fontSize: 24,
                     height: 2,
                   ),
                 ),
-                const Text('@thangved'),
               ],
             ),
           )

@@ -180,11 +180,11 @@ class _RequestAddFriendItemState extends State<RequestAddFriendItem> {
                 if (friend) {
                   if (await confirm(
                     context,
-                    title: Text('Cảnh báo'),
+                    title: const Text('Cảnh báo'),
                     content: Text(
                         'Bạn chắc chắn muốn hủy kết bạn với ${widget._user.firstName}?'),
-                    textOK: Text('Hủy kết bạn'),
-                    textCancel: Text('Không'),
+                    textOK: const Text('Hủy kết bạn'),
+                    textCancel: const Text('Không'),
                   )) {
                     await FriendService.removeFriend(widget._user.id);
                     setState(() {

@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:messeenger_flutter/modules/home/widgets/request_list.dart';
+import 'package:messeenger_flutter/services/friend_service.dart';
 
-class RequestListScreen extends StatelessWidget {
+class RequestListScreen extends StatefulWidget {
   const RequestListScreen({super.key});
 
+  @override
+  State<RequestListScreen> createState() => _RequestListScreenState();
+}
+
+class _RequestListScreenState extends State<RequestListScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +33,35 @@ class RequestListScreen extends StatelessWidget {
                 fontWeight: FontWeight.w900,
               ),
             ),
-          )
+          ),
+          FutureBuilder(
+            future: FriendService.getAllRequests(),
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text(snapshot.error.toString()),
+                    );
+                  },
+                );
+              }
+
+              return snapshot.hasData
+                  ? RequestList(
+                      userList: snapshot.data ?? [],
+                      refresh: () {
+                        setState(() {});
+                      },
+                    )
+                  : const Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+            },
+          ),
         ],
       ),
     );

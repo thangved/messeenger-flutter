@@ -5,17 +5,17 @@ import 'package:messeenger_flutter/models/user_model.dart';
 import '../../../services/friend_service.dart';
 
 class FriendList extends StatelessWidget {
-  const FriendList({super.key, required this.userList});
+  FriendList({super.key, required this.userList, required this.refresh});
 
   final List<UserModel> userList;
+  dynamic refresh;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
         itemBuilder: (context, index) {
-          return Container(
-            margin: const EdgeInsets.only(top: 10),
+          return SizedBox(
             width: double.maxFinite,
             height: double.maxFinite,
             child: ListView.builder(
@@ -71,14 +71,15 @@ class FriendList extends StatelessWidget {
                           try {
                             if (await confirm(
                               context,
-                              title: Text('Cảnh báo'),
+                              title: const Text('Cảnh báo'),
                               content: Text(
                                   'Bạn chắc chắn muốn hủy kết bạn với ${userList[index].firstName}?'),
-                              textOK: Text('Hủy kết bạn'),
-                              textCancel: Text('Không'),
+                              textOK: const Text('Hủy kết bạn'),
+                              textCancel: const Text('Không'),
                             )) {
                               await FriendService.removeFriend(
                                   userList[index].id);
+                              refresh();
                             }
                           } catch (e) {
                             showDialog(

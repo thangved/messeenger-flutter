@@ -3,9 +3,14 @@ import 'package:messeenger_flutter/modules/home/screens/add_friend_screen.dart';
 import 'package:messeenger_flutter/modules/home/widgets/friend_list.dart';
 import 'package:messeenger_flutter/services/friend_service.dart';
 
-class FriendListScreen extends StatelessWidget {
+class FriendListScreen extends StatefulWidget {
   const FriendListScreen({super.key});
 
+  @override
+  State<FriendListScreen> createState() => _FriendListScreenState();
+}
+
+class _FriendListScreenState extends State<FriendListScreen> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,7 +67,12 @@ class FriendListScreen extends StatelessWidget {
               }
 
               return snapshot.hasData
-                  ? FriendList(userList: snapshot.data)
+                  ? FriendList(
+                      userList: snapshot.data,
+                      refresh: () {
+                        setState(() {});
+                      },
+                    )
                   : const Center(
                       child: CircularProgressIndicator(),
                     );

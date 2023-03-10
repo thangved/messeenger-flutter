@@ -35,14 +35,18 @@ class MainChat extends StatelessWidget {
                           chatGroup: snapshot.data,
                         ),
                       ),
-                      body: const MainChatBody(),
+                      body: MainChatBody(
+                        chatGroup: snapshot.data,
+                      ),
                       backgroundColor: Colors.blue.withAlpha(10),
                     ),
                   ),
                 ),
               )
-            : const Center(
-                child: CircularProgressIndicator(),
+            : const Expanded(
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
               );
       },
     );
@@ -61,18 +65,13 @@ class MainChatTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(100),
+        CircleAvatar(
+          backgroundImage: chatGroup?.avatar != null
+              ? NetworkImage(chatGroup?.avatar ?? '')
+              : null,
           child: chatGroup?.avatar == null
-              ? Image.network(
-                  chatGroup?.avatar ?? '',
-                  width: 36,
-                  height: 36,
-                  fit: BoxFit.cover,
-                )
-              : CircleAvatar(
-                  child: Text(chatGroup?.name.toUpperCase()[0] ?? ''),
-                ),
+              ? Text(chatGroup?.name[0].toUpperCase() ?? '')
+              : null,
         ),
         Container(
           padding: const EdgeInsets.only(left: 20),
@@ -81,12 +80,12 @@ class MainChatTitle extends StatelessWidget {
             children: [
               Text(
                 chatGroup?.name ?? '',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              Text(
+              const Text(
                 'Đang hoạt động',
                 style: TextStyle(fontSize: 14),
               ),
@@ -99,9 +98,12 @@ class MainChatTitle extends StatelessWidget {
 }
 
 class MainChatBody extends StatelessWidget {
-  const MainChatBody({
+  MainChatBody({
     Key? key,
+    this.chatGroup,
   }) : super(key: key);
+
+  ChatGroupModel? chatGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -109,13 +111,15 @@ class MainChatBody extends StatelessWidget {
       children: [
         Expanded(
           child: Column(
-            children: [
+            children: const [
               MessageList(),
               BottomChatForm(),
             ],
           ),
         ),
-        UserInfo()
+        UserInfo(
+          chatGroup: chatGroup,
+        )
       ],
     );
   }

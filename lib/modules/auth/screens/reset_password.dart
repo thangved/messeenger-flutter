@@ -21,9 +21,10 @@ class ResetPasswordScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(color: Colors.black.withAlpha(20), blurRadius: 20),
-                ],
+                border: Border.all(
+                  width: 1,
+                  color: Colors.black.withAlpha(20),
+                ),
               ),
               child: Column(
                 children: [
@@ -82,7 +83,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       onPressed: () async {
                         try {
                           final res =
-                          await AuthService.resetPassword(email: _email);
+                              await AuthService.resetPassword(email: _email);
                           showDialog(
                               context: context,
                               builder: (context) {

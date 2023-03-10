@@ -30,9 +30,10 @@ class _LoginScreenState extends State<LoginScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(color: Colors.black.withAlpha(20), blurRadius: 20),
-                ],
+                border: Border.all(
+                  width: 1,
+                  color: Colors.black.withAlpha(20),
+                ),
               ),
               child: Column(
                 children: [
@@ -92,10 +93,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () async {
                         try {
                           final response =
-                          await AuthService.login(_username, _password);
+                              await AuthService.login(_username, _password);
 
                           context.read<AuthProvider>().accessToken =
-                          response['tokens']['accessToken'];
+                              response['tokens']['accessToken'];
 
                           Navigator.of(context).pushReplacementNamed('/');
                         } catch (error) {

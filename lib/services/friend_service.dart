@@ -14,7 +14,7 @@ class FriendService {
     }
   }
 
-  static void acceptAddFriend(userId) async {
+  static acceptAddFriend(userId) async {
     final res = await client.put('$baseUrl/friends/$userId'.toUri());
 
     if (res.statusCode != 200) {

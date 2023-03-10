@@ -36,9 +36,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(20),
-                boxShadow: [
-                  BoxShadow(color: Colors.black.withAlpha(20), blurRadius: 20),
-                ],
+                border: Border.all(
+                  width: 1,
+                  color: Colors.black.withAlpha(20),
+                ),
               ),
               child: _success
                   ? Column(
