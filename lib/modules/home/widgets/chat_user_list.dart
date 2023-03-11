@@ -33,13 +33,13 @@ class ChatUserItem extends StatefulWidget {
   const ChatUserItem({
     Key? key,
     required this.id,
-    required this.img,
+    this.img,
     required this.name,
     required this.lastMessage,
   }) : super(key: key);
 
   final String id;
-  final String img;
+  final String? img;
   final String name;
   final MessageModel? lastMessage;
 
@@ -67,9 +67,9 @@ class _ChatUserItemState extends State<ChatUserItem> {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(100),
-              child: widget.img.isNotEmpty
+              child: widget.img != null
                   ? Image.network(
-                      widget.img,
+                      widget.img ?? '',
                       width: 36,
                       height: 36,
                       fit: BoxFit.cover,

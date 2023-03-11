@@ -5,10 +5,10 @@ import 'package:messeenger_flutter/models/user_model.dart';
 import '../../../services/friend_service.dart';
 
 class FriendList extends StatelessWidget {
-  FriendList({super.key, required this.userList, required this.refresh});
+  const FriendList({super.key, required this.userList, required this.refresh});
 
   final List<UserModel> userList;
-  dynamic refresh;
+  final dynamic refresh;
 
   @override
   Widget build(BuildContext context) {
@@ -69,14 +69,15 @@ class FriendList extends StatelessWidget {
                       IconButton(
                         onPressed: () async {
                           try {
-                            if (await confirm(
+                            bool isAccept = await confirm(
                               context,
                               title: const Text('Cảnh báo'),
                               content: Text(
                                   'Bạn chắc chắn muốn hủy kết bạn với ${userList[index].firstName}?'),
                               textOK: const Text('Hủy kết bạn'),
                               textCancel: const Text('Không'),
-                            )) {
+                            );
+                            if (isAccept) {
                               await FriendService.removeFriend(
                                   userList[index].id);
                               refresh();

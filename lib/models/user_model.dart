@@ -11,14 +11,14 @@ class UserModel {
   final bool requested;
 
   UserModel({
-    required this.id,
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.avatar,
-    required this.username,
-    required this.friend,
-    required this.requested,
+    this.id = "",
+    this.firstName = "",
+    this.lastName = "",
+    this.email = "",
+    this.avatar = "",
+    this.username = "",
+    this.friend = false,
+    this.requested = false,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {

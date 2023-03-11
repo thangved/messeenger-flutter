@@ -4,16 +4,20 @@ class MessageModel {
   String id;
   String content;
   String type;
-  String? deletedAt;
-
+  DateTime createdAt;
   UserModel createdBy;
+
+  DateTime? deletedAt;
+  String? url;
 
   MessageModel({
     required this.id,
     required this.content,
     required this.type,
     required this.createdBy,
-    required this.deletedAt,
+    required this.createdAt,
+    this.deletedAt,
+    this.url,
   });
 
   factory MessageModel.fromJson(json) {
@@ -22,7 +26,10 @@ class MessageModel {
       content: json['content'] ?? '',
       type: json['type'],
       createdBy: UserModel.fromJson(json['createdBy']),
-      deletedAt: json['deletedAt'],
+      createdAt: DateTime.parse(json['createdAt']),
+      deletedAt:
+          json['deletedAt'] != null ? DateTime.parse(json['deletedAt']) : null,
+      url: json['url'],
     );
   }
 }

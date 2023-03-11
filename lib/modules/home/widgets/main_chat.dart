@@ -32,11 +32,11 @@ class MainChat extends StatelessWidget {
                     child: Scaffold(
                       appBar: AppBar(
                         title: MainChatTitle(
-                          chatGroup: snapshot.data,
+                          chatGroup: snapshot.data ?? ChatGroupModel(),
                         ),
                       ),
                       body: MainChatBody(
-                        chatGroup: snapshot.data,
+                        chatGroup: snapshot.data ?? ChatGroupModel(),
                       ),
                       backgroundColor: Colors.blue.withAlpha(10),
                     ),
@@ -54,23 +54,23 @@ class MainChat extends StatelessWidget {
 }
 
 class MainChatTitle extends StatelessWidget {
-  MainChatTitle({
+  const MainChatTitle({
     Key? key,
-    this.chatGroup,
+    required this.chatGroup,
   }) : super(key: key);
 
-  ChatGroupModel? chatGroup;
+  final ChatGroupModel chatGroup;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
         CircleAvatar(
-          backgroundImage: chatGroup?.avatar != null
-              ? NetworkImage(chatGroup?.avatar ?? '')
+          backgroundImage: chatGroup.avatar != null
+              ? NetworkImage(chatGroup.avatar ?? '')
               : null,
-          child: chatGroup?.avatar == null
-              ? Text(chatGroup?.name[0].toUpperCase() ?? '')
+          child: chatGroup.avatar == null
+              ? Text(chatGroup.name[0].toUpperCase())
               : null,
         ),
         Container(
@@ -79,7 +79,7 @@ class MainChatTitle extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                chatGroup?.name ?? '',
+                chatGroup.name,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -98,12 +98,12 @@ class MainChatTitle extends StatelessWidget {
 }
 
 class MainChatBody extends StatelessWidget {
-  MainChatBody({
+  const MainChatBody({
     Key? key,
-    this.chatGroup,
+    required this.chatGroup,
   }) : super(key: key);
 
-  ChatGroupModel? chatGroup;
+  final ChatGroupModel chatGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -111,9 +111,31 @@ class MainChatBody extends StatelessWidget {
       children: [
         Expanded(
           child: Column(
-            children: const [
-              MessageList(),
-              BottomChatForm(),
+            children: [
+              FutureBuilder(
+                  future: ChatGroupService.getAllMessages(
+                    context.watch<ChatProvider>().chatId ?? '',
+                  ),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Expanded(
+                        child: Center(
+                          child: Text(snapshot.error.toString()),
+                        ),
+                      );
+                    }
+
+                    return snapshot.hasData
+                        ? MessageList(
+                            messages: snapshot.data ?? [],
+                          )
+                        : const Expanded(
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                  }),
+              const BottomChatForm(),
             ],
           ),
         ),

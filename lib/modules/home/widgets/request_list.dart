@@ -4,10 +4,10 @@ import 'package:messeenger_flutter/services/friend_service.dart';
 import '../../../models/user_model.dart';
 
 class RequestList extends StatelessWidget {
-  RequestList({super.key, required this.userList, required this.refresh});
+  const RequestList({super.key, required this.userList, required this.refresh});
 
-  List<UserModel> userList;
-  dynamic refresh;
+  final List<UserModel> userList;
+  final dynamic refresh;
 
   @override
   Widget build(BuildContext context) {

@@ -3,16 +3,16 @@ import 'package:messeenger_flutter/models/message_model.dart';
 class ChatGroupModel {
   String id;
   String type;
-  String avatar;
+  String? avatar;
   String name;
 
   MessageModel? lastMessage;
 
   ChatGroupModel({
-    required this.id,
-    required this.type,
-    required this.avatar,
-    required this.name,
+    this.id = "",
+    this.type = "",
+    this.avatar,
+    this.name = "",
     this.lastMessage,
   });
 
@@ -25,7 +25,7 @@ class ChatGroupModel {
     return ChatGroupModel(
       id: json['_id'],
       type: json['type'],
-      avatar: json.containsKey('avatar') ? json['avatar'] : "",
+      avatar: json['avatar'],
       name: json['name'],
       lastMessage: lastMessage,
     );
