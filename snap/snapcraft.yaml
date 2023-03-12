@@ -8,15 +8,15 @@ base: core18
 grade: stable
 
 slots:
-  dbus-super-cool-app: # adjust accordingly to your app name
+  dbus-messeenger-client:
     interface: dbus
     bus: session
-    name: thangved.thangved.messeenger_client # adjust accordingly to your app name and
+    name: thangved.thangved.messeenger_client
 
 apps:
   super-cool-app:
     command: messeenger-client
-    extensions: [ flutter-master ] # Where "master" defines which Flutter channel to use for the build
+    extensions: [ flutter-master ]
     plugs:
       - network
     slots:
@@ -25,4 +25,4 @@ parts:
   super-cool-app:
     source: .
     plugin: flutter
-    flutter-target: lib/main.dart # The main entry-point file of the application
+    flutter-target: lib/main.dart
