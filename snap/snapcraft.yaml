@@ -1,0 +1,28 @@
+name: messeenger-client
+version: 0.1.0
+summary: Messeenger
+description: Free chat app
+
+confinement: strict
+base: core18
+grade: stable
+
+slots:
+  dbus-super-cool-app: # adjust accordingly to your app name
+    interface: dbus
+    bus: session
+    name: thangved.thangved.messeenger_client # adjust accordingly to your app name and
+
+apps:
+  super-cool-app:
+    command: messeenger-client
+    extensions: [ flutter-master ] # Where "master" defines which Flutter channel to use for the build
+    plugs:
+      - network
+    slots:
+      - dbus-messeenger-client
+parts:
+  super-cool-app:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart # The main entry-point file of the application

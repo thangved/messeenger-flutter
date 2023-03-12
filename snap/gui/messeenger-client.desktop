@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Messeenger
+Comment=Free chat app
+Exec=messeenger-client
+Icon=${SNAP}/meta/gui/messeenger-client.png
+Terminal=false
+Type=Application
+Categories=Featured;
