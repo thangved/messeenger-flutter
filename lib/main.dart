@@ -8,9 +8,15 @@ import 'package:messeenger_flutter/modules/auth/screens/reset_password.dart';
 import 'package:messeenger_flutter/modules/home/screens/default_home.dart';
 import 'package:messeenger_flutter/providers/auth_provider.dart';
 import 'package:messeenger_flutter/providers/chat_provider.dart';
+import 'package:messeenger_flutter/utils/socket_util.dart';
 import 'package:provider/provider.dart';
+import 'package:socket_io_client/socket_io_client.dart';
 
 void main() {
+  socket.connect();
+  socket.onConnect((_) {
+    print('websocket is connected!');
+  });
   runApp(
     DevicePreview(
       enabled: !kReleaseMode,
@@ -22,9 +28,9 @@ void main() {
           ChangeNotifierProvider(
             create: (_) => ChatProvider(),
           ),
-        ],
-        child: const MyApp(),
-      ),
+            ],
+            child: const MyApp(),
+          ),
     ),
   );
 }

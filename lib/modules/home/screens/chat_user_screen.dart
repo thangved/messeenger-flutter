@@ -1,9 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:messeenger_flutter/constaints/events.dart';
 import 'package:messeenger_flutter/modules/home/widgets/chat_user_list.dart';
 import 'package:messeenger_flutter/services/chat_group_service.dart';
+import 'package:messeenger_flutter/utils/socket_util.dart';
 
-class ChatUserScreen extends StatelessWidget {
+class ChatUserScreen extends StatefulWidget {
   const ChatUserScreen({super.key});
+
+  @override
+  State<ChatUserScreen> createState() => _ChatUserScreenState();
+}
+
+class _ChatUserScreenState extends State<ChatUserScreen> {
+  @override
+  void initState() {
+    socket.on(NEW_MESSAGE, (data) => {setState(() {})});
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +59,8 @@ class ChatUserScreen extends StatelessWidget {
                 return snapshot.hasData
                     ? ChatUserList(chatList: snapshot.data)
                     : const Center(
-                        child: CircularProgressIndicator(),
-                      );
+                  child: CircularProgressIndicator(),
+                );
               },
             ),
           ),

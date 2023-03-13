@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:messeenger_flutter/constaints/events.dart';
 import 'package:messeenger_flutter/modules/home/widgets/user_info.dart';
 import 'package:messeenger_flutter/providers/chat_provider.dart';
 import 'package:messeenger_flutter/services/chat_group_service.dart';
+import 'package:messeenger_flutter/utils/socket_util.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/chat_group_model.dart';
@@ -97,13 +99,24 @@ class MainChatTitle extends StatelessWidget {
   }
 }
 
-class MainChatBody extends StatelessWidget {
+class MainChatBody extends StatefulWidget {
   const MainChatBody({
     Key? key,
     required this.chatGroup,
   }) : super(key: key);
 
   final ChatGroupModel chatGroup;
+
+  @override
+  State<MainChatBody> createState() => _MainChatBodyState();
+}
+
+class _MainChatBodyState extends State<MainChatBody> {
+  @override
+  void initState() {
+    socket.on(NEW_MESSAGE, (data) => {setState(() {})});
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -127,20 +140,20 @@ class MainChatBody extends StatelessWidget {
 
                     return snapshot.hasData
                         ? MessageList(
-                            messages: snapshot.data ?? [],
-                          )
+                      messages: snapshot.data ?? [],
+                    )
                         : const Expanded(
-                            child: Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                          );
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
                   }),
               const BottomChatForm(),
             ],
           ),
         ),
         UserInfo(
-          chatGroup: chatGroup,
+          chatGroup: widget.chatGroup,
         )
       ],
     );

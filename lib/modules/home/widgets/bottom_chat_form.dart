@@ -1,10 +1,22 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:messeenger_flutter/providers/chat_provider.dart';
+import 'package:messeenger_flutter/services/message_service.dart';
+import 'package:provider/provider.dart';
 
-class BottomChatForm extends StatelessWidget {
+class BottomChatForm extends StatefulWidget {
   const BottomChatForm({
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<BottomChatForm> createState() => _BottomChatFormState();
+}
+
+class _BottomChatFormState extends State<BottomChatForm> {
+  String _messageText = "";
+
+  final textField = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +59,32 @@ class BottomChatForm extends StatelessWidget {
                   border: InputBorder.none,
                 ),
                 autofocus: true,
+                onChanged: (text) {
+                  _messageText = text;
+                },
+                controller: textField,
               ),
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              try {
+                await MessageService.sendMessage(
+                  groupId: context.read<ChatProvider>().chatId,
+                  content: _messageText,
+                );
+              } catch (error) {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        content: Text(error.toString()),
+                      );
+                    });
+              } finally {
+                textField.clear();
+              }
+            },
             icon: const Icon(
               Icons.send_rounded,
               color: Colors.blue,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/models/chat_group_model.dart';
 import 'package:messeenger_flutter/models/message_model.dart';
 import 'package:messeenger_flutter/providers/chat_provider.dart';
+import 'package:messeenger_flutter/utils/socket_util.dart';
 import 'package:provider/provider.dart';
 
 class ChatUserList extends StatelessWidget {
@@ -49,6 +50,17 @@ class ChatUserItem extends StatefulWidget {
 
 class _ChatUserItemState extends State<ChatUserItem> {
   @override
+  void initState() {
+    socket.emit(
+      'join',
+      {
+        'groupId': widget.id,
+      },
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     bool active = widget.id == context.watch<ChatProvider>().chatId;
 
@@ -69,14 +81,14 @@ class _ChatUserItemState extends State<ChatUserItem> {
               borderRadius: BorderRadius.circular(100),
               child: widget.img != null
                   ? Image.network(
-                      widget.img ?? '',
-                      width: 36,
-                      height: 36,
-                      fit: BoxFit.cover,
-                    )
+                widget.img ?? '',
+                width: 36,
+                height: 36,
+                fit: BoxFit.cover,
+              )
                   : CircleAvatar(
-                      child: Text(widget.name[0].toUpperCase()),
-                    ),
+                child: Text(widget.name[0].toUpperCase()),
+              ),
             ),
             Expanded(
               child: Container(

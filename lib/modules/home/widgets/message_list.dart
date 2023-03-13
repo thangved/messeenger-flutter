@@ -16,20 +16,17 @@ class MessageList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        child: ListView(
-          children: messages.map((e) {
-            if (e.createdBy.id == context.read<AuthProvider>().currentUser.id) {
-              return MyMessage(
-                message: e,
-              );
-            }
-            return OtherUserMessage(
+      child: ListView(
+        children: messages.map((e) {
+          if (e.createdBy.id == context.read<AuthProvider>().currentUser.id) {
+            return MyMessage(
               message: e,
             );
-          }).toList(),
-        ),
+          }
+          return OtherUserMessage(
+            message: e,
+          );
+        }).toList(),
       ),
     );
   }

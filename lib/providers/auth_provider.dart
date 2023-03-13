@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/models/user_model.dart';
 import 'package:messeenger_flutter/services/auth_service.dart';
+import 'package:messeenger_flutter/utils/socket_util.dart';
 import 'package:messeenger_flutter/utils/token_util.dart';
 
 class AuthProvider with ChangeNotifier {
@@ -41,6 +42,7 @@ class AuthProvider with ChangeNotifier {
   void setCurrentUser() async {
     try {
       _currentUser = await AuthService.auth();
+      socket.emit('join', _currentUser.id);
       _logged = true;
     } finally {
       _tested = true;
