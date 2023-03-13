@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:messeenger_flutter/constaints/events.dart';
 import 'package:messeenger_flutter/modules/home/screens/add_friend_screen.dart';
 import 'package:messeenger_flutter/modules/home/widgets/friend_list.dart';
 import 'package:messeenger_flutter/services/friend_service.dart';
+import 'package:messeenger_flutter/utils/socket_util.dart';
 
 class FriendListScreen extends StatefulWidget {
   const FriendListScreen({super.key});
@@ -11,6 +13,13 @@ class FriendListScreen extends StatefulWidget {
 }
 
 class _FriendListScreenState extends State<FriendListScreen> {
+  @override
+  void initState() {
+    socket.on(ACCEPT_ADD_FRIEND, (data) => {setState(() {})});
+    socket.on(REMOVE_FRIEND, (date) => {setState(() {})});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -68,14 +77,14 @@ class _FriendListScreenState extends State<FriendListScreen> {
 
               return snapshot.hasData
                   ? FriendList(
-                      userList: snapshot.data,
-                      refresh: () {
-                        setState(() {});
-                      },
-                    )
+                userList: snapshot.data,
+                refresh: () {
+                  setState(() {});
+                },
+              )
                   : const Center(
-                      child: CircularProgressIndicator(),
-                    );
+                child: CircularProgressIndicator(),
+              );
             },
           )
         ],

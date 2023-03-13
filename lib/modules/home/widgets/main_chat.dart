@@ -115,6 +115,7 @@ class _MainChatBodyState extends State<MainChatBody> {
   @override
   void initState() {
     socket.on(NEW_MESSAGE, (data) => {setState(() {})});
+    socket.on(REMOVE_MESSAGE, (data) => {setState(() {})});
     super.initState();
   }
 
@@ -140,13 +141,13 @@ class _MainChatBodyState extends State<MainChatBody> {
 
                     return snapshot.hasData
                         ? MessageList(
-                      messages: snapshot.data ?? [],
-                    )
+                            messages: snapshot.data ?? [],
+                          )
                         : const Expanded(
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    );
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
                   }),
               const BottomChatForm(),
             ],

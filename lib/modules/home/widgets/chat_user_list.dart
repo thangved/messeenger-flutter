@@ -81,14 +81,14 @@ class _ChatUserItemState extends State<ChatUserItem> {
               borderRadius: BorderRadius.circular(100),
               child: widget.img != null
                   ? Image.network(
-                widget.img ?? '',
-                width: 36,
-                height: 36,
-                fit: BoxFit.cover,
-              )
+                      widget.img ?? '',
+                      width: 36,
+                      height: 36,
+                      fit: BoxFit.cover,
+                    )
                   : CircleAvatar(
-                child: Text(widget.name[0].toUpperCase()),
-              ),
+                      child: Text(widget.name[0].toUpperCase()),
+                    ),
             ),
             Expanded(
               child: Container(

@@ -15,6 +15,8 @@ class _ChatUserScreenState extends State<ChatUserScreen> {
   @override
   void initState() {
     socket.on(NEW_MESSAGE, (data) => {setState(() {})});
+    socket.on(REMOVE_MESSAGE, (data) => {setState(() {})});
+
     super.initState();
   }
 
@@ -59,8 +61,8 @@ class _ChatUserScreenState extends State<ChatUserScreen> {
                 return snapshot.hasData
                     ? ChatUserList(chatList: snapshot.data)
                     : const Center(
-                  child: CircularProgressIndicator(),
-                );
+                        child: CircularProgressIndicator(),
+                      );
               },
             ),
           ),

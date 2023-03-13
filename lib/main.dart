@@ -28,9 +28,9 @@ void main() {
           ChangeNotifierProvider(
             create: (_) => ChatProvider(),
           ),
-            ],
-            child: const MyApp(),
-          ),
+        ],
+        child: const MyApp(),
+      ),
     ),
   );
 }

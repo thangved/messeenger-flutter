@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:messeenger_flutter/constaints/events.dart';
 import 'package:messeenger_flutter/modules/home/widgets/request_list.dart';
 import 'package:messeenger_flutter/services/friend_service.dart';
+import 'package:messeenger_flutter/utils/socket_util.dart';
 
 class RequestListScreen extends StatefulWidget {
   const RequestListScreen({super.key});
@@ -10,6 +12,12 @@ class RequestListScreen extends StatefulWidget {
 }
 
 class _RequestListScreenState extends State<RequestListScreen> {
+  @override
+  void initState() {
+    socket.on(REQUEST_ADD_FRIEND, (data) => {setState(() {})});
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -50,16 +58,16 @@ class _RequestListScreenState extends State<RequestListScreen> {
 
               return snapshot.hasData
                   ? RequestList(
-                      userList: snapshot.data ?? [],
-                      refresh: () {
-                        setState(() {});
-                      },
-                    )
+                userList: snapshot.data ?? [],
+                refresh: () {
+                  setState(() {});
+                },
+              )
                   : const Expanded(
-                      child: Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                    );
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
             },
           ),
         ],
