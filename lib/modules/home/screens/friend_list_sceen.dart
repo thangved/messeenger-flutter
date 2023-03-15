@@ -77,14 +77,14 @@ class _FriendListScreenState extends State<FriendListScreen> {
 
               return snapshot.hasData
                   ? FriendList(
-                userList: snapshot.data,
-                refresh: () {
-                  setState(() {});
-                },
-              )
+                      userList: snapshot.data,
+                      refresh: () {
+                        setState(() {});
+                      },
+                    )
                   : const Center(
-                child: CircularProgressIndicator(),
-              );
+                      child: CircularProgressIndicator(),
+                    );
             },
           )
         ],

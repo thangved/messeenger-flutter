@@ -58,16 +58,16 @@ class _RequestListScreenState extends State<RequestListScreen> {
 
               return snapshot.hasData
                   ? RequestList(
-                userList: snapshot.data ?? [],
-                refresh: () {
-                  setState(() {});
-                },
-              )
+                      userList: snapshot.data ?? [],
+                      refresh: () {
+                        setState(() {});
+                      },
+                    )
                   : const Expanded(
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
             },
           ),
         ],
