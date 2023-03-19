@@ -1,4 +1,4 @@
-const String baseUrl = "http://localhost:5000/api";
-const String socketUrl = "http://localhost:5001";
+const String baseUrl = "https://api.messeenger.thangved.com/api";
+const String socketUrl = "https://websocket.messeenger.thangved.com";
 
 // const baseUrl = "http://172.17.0.1:5000/api";
