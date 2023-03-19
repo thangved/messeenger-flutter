@@ -30,13 +30,13 @@ class MainChat extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black.withAlpha(30)),
-              color: Colors.white,
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(20),
-              child: Scaffold(
-                appBar: AppBar(
-                  title: MainChatTitle(
+                    color: Colors.white,
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(20),
+                    child: Scaffold(
+                      appBar: AppBar(
+                        title: MainChatTitle(
                           chatGroup: snapshot.data ?? ChatGroupModel(),
                         ),
                         leading: isMobile
@@ -49,19 +49,19 @@ class MainChat extends StatelessWidget {
                               )
                             : null,
                       ),
-                body: MainChatBody(
-                  chatGroup: snapshot.data ?? ChatGroupModel(),
+                      body: MainChatBody(
+                        chatGroup: snapshot.data ?? ChatGroupModel(),
+                      ),
+                      backgroundColor: Colors.blue.withAlpha(10),
+                    ),
+                  ),
                 ),
-                backgroundColor: Colors.blue.withAlpha(10),
-              ),
-            ),
-          ),
-        )
+              )
             : const Expanded(
-          child: Center(
-            child: CircularProgressIndicator(),
-          ),
-        );
+                child: Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
       },
     );
   }
