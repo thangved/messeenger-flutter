@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/constaints/events.dart';
-import 'package:messeenger_flutter/modules/home/widgets/user_info.dart';
 import 'package:messeenger_flutter/providers/chat_provider.dart';
 import 'package:messeenger_flutter/services/chat_group_service.dart';
 import 'package:messeenger_flutter/utils/socket_util.dart';
@@ -17,6 +16,10 @@ class MainChat extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+
+    bool isMobile = screenSize.width <= 800;
+
     return FutureBuilder(
       future: ChatGroupService.getById(context.watch<ChatProvider>().chatId),
       builder: (context, snapshot) {
@@ -27,29 +30,38 @@ class MainChat extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.black.withAlpha(30)),
-                    color: Colors.white,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(20),
-                    child: Scaffold(
-                      appBar: AppBar(
-                        title: MainChatTitle(
+              color: Colors.white,
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: Scaffold(
+                appBar: AppBar(
+                  title: MainChatTitle(
                           chatGroup: snapshot.data ?? ChatGroupModel(),
                         ),
+                        leading: isMobile
+                            ? IconButton(
+                                icon: const Icon(Icons.arrow_back_ios_new),
+                                onPressed: () {
+                                  context.read<ChatProvider>().chatId = null;
+                                  Navigator.of(context).pop();
+                                },
+                              )
+                            : null,
                       ),
-                      body: MainChatBody(
-                        chatGroup: snapshot.data ?? ChatGroupModel(),
-                      ),
-                      backgroundColor: Colors.blue.withAlpha(10),
-                    ),
-                  ),
+                body: MainChatBody(
+                  chatGroup: snapshot.data ?? ChatGroupModel(),
                 ),
-              )
+                backgroundColor: Colors.blue.withAlpha(10),
+              ),
+            ),
+          ),
+        )
             : const Expanded(
-                child: Center(
-                  child: CircularProgressIndicator(),
-                ),
-              );
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
       },
     );
   }
@@ -153,9 +165,6 @@ class _MainChatBodyState extends State<MainChatBody> {
             ],
           ),
         ),
-        UserInfo(
-          chatGroup: widget.chatGroup,
-        )
       ],
     );
   }

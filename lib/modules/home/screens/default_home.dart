@@ -7,14 +7,27 @@ import 'package:messeenger_flutter/modules/home/widgets/main_chat.dart';
 import 'package:messeenger_flutter/providers/chat_provider.dart';
 import 'package:provider/provider.dart';
 
-class DefaultHome extends StatefulWidget {
+class DefaultHome extends StatelessWidget {
   const DefaultHome({super.key});
 
   @override
-  State<DefaultHome> createState() => _DefaultHomeState();
+  Widget build(BuildContext context) {
+    Size screenSize = MediaQuery.of(context).size;
+
+    bool isMobile = screenSize.width <= 900;
+
+    return isMobile ? const MobileLayout() : const DesktopLayout();
+  }
 }
 
-class _DefaultHomeState extends State<DefaultHome> {
+class DesktopLayout extends StatefulWidget {
+  const DesktopLayout({super.key});
+
+  @override
+  State<DesktopLayout> createState() => _DesktopLayoutState();
+}
+
+class _DesktopLayoutState extends State<DesktopLayout> {
   int _currentIndex = 0;
 
   @override
@@ -52,6 +65,42 @@ class _DefaultHomeState extends State<DefaultHome> {
                       ),
                     ),
                   ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class MobileLayout extends StatefulWidget {
+  const MobileLayout({super.key});
+
+  @override
+  State<MobileLayout> createState() => _MobileLayoutState();
+}
+
+class _MobileLayoutState extends State<MobileLayout> {
+  int _currentIndex = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    const widgets = [
+      ChatUserScreen(),
+      FriendListScreen(),
+      RequestListScreen(),
+    ];
+    return Scaffold(
+      body: SafeArea(
+        child: Row(
+          children: [
+            DesktopNavigation(
+              setSelectedIndex: (newIndex) {
+                setState(() {
+                  _currentIndex = newIndex;
+                });
+              },
+            ),
+            Expanded(child: widgets[_currentIndex])
           ],
         ),
       ),

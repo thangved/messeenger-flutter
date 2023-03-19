@@ -1,5 +1,3 @@
-import 'package:device_preview/device_preview.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:messeenger_flutter/modules/auth/screens/login_screen.dart';
@@ -15,24 +13,19 @@ import 'package:socket_io_client/socket_io_client.dart';
 void main() {
   socket.connect();
   socket.onConnect((_) {
-    print('websocket is connected!');
+    print('Socket is connected');
   });
-  runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (_) => AuthProvider(),
-          ),
-          ChangeNotifierProvider(
-            create: (_) => ChatProvider(),
-          ),
-        ],
-        child: const MyApp(),
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: (_) => AuthProvider(),
       ),
-    ),
-  );
+      ChangeNotifierProvider(
+        create: (_) => ChatProvider(),
+      ),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {

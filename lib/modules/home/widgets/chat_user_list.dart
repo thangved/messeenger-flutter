@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/models/chat_group_model.dart';
 import 'package:messeenger_flutter/models/message_model.dart';
+import 'package:messeenger_flutter/modules/home/widgets/main_chat.dart';
 import 'package:messeenger_flutter/providers/chat_provider.dart';
 import 'package:messeenger_flutter/utils/socket_util.dart';
 import 'package:provider/provider.dart';
@@ -63,6 +64,9 @@ class _ChatUserItemState extends State<ChatUserItem> {
   @override
   Widget build(BuildContext context) {
     bool active = widget.id == context.watch<ChatProvider>().chatId;
+    Size screenSize = MediaQuery.of(context).size;
+
+    bool isMobile = screenSize.width <= 800;
 
     final textColor = active ? Colors.blue : Colors.black;
     final backgroundColor =
@@ -121,6 +125,11 @@ class _ChatUserItemState extends State<ChatUserItem> {
       ),
       onTap: () {
         context.read<ChatProvider>().chatId = widget.id;
+        if (isMobile) {
+          Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => const MainChat(),
+          ));
+        }
       },
     );
   }
