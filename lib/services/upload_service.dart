@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http;
 import 'package:messeenger_flutter/configs/http_config.dart';
 import 'package:messeenger_flutter/utils/token_util.dart';
@@ -17,16 +18,24 @@ class UploadResponse {
 }
 
 class UploadService {
-  static Future<UploadResponse> upload(String filepath) async {
+  static Future<UploadResponse> upload(dynamic file) async {
     final token = await TokenUtil.getToken();
     var request = http.MultipartRequest(
       'POST',
       Uri.parse('$baseUrl/upload'),
     );
-    request.files.add(await http.MultipartFile.fromPath(
-      'file',
-      filepath,
-    ));
+    if (kIsWeb) {
+      request.files.add(http.MultipartFile.fromBytes(
+        'file',
+        file.bytes,
+      ));
+    } else {
+      request.files.add(await http.MultipartFile.fromPath(
+        'file',
+        file.path,
+      ));
+    }
+
     request.fields['path'] = 'chats';
     request.headers['authorization'] = 'Bearer $token';
 

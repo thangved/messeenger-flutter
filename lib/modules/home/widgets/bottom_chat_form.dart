@@ -42,8 +42,7 @@ class _BottomChatFormState extends State<BottomChatForm> {
               final result =
                   await FilePicker.platform.pickFiles(type: FileType.image);
 
-              final res =
-                  await UploadService.upload(result?.files.single.path ?? '');
+              final res = await UploadService.upload(result?.files.single);
 
               await MessageService.sendMessage(
                 groupId: chatId,
