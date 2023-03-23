@@ -2,6 +2,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/providers/chat_provider.dart';
 import 'package:messeenger_flutter/services/message_service.dart';
+import 'package:messeenger_flutter/services/upload_service.dart';
 import 'package:provider/provider.dart';
 
 class BottomChatForm extends StatefulWidget {
@@ -20,6 +21,8 @@ class _BottomChatFormState extends State<BottomChatForm> {
 
   @override
   Widget build(BuildContext context) {
+    final chatId = context.read<ChatProvider>().chatId;
+
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -36,7 +39,17 @@ class _BottomChatFormState extends State<BottomChatForm> {
         children: [
           IconButton(
             onPressed: () async {
-              await FilePicker.platform.pickFiles(type: FileType.image);
+              final result =
+                  await FilePicker.platform.pickFiles(type: FileType.image);
+
+              final res =
+                  await UploadService.upload(result?.files.single.path ?? '');
+
+              await MessageService.sendMessage(
+                groupId: chatId,
+                url: res.fileUrl,
+                type: 'file',
+              );
             },
             icon: const Icon(
               Icons.photo_rounded,

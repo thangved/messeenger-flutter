@@ -9,14 +9,18 @@ class MessageList extends StatelessWidget {
   const MessageList({
     Key? key,
     required this.messages,
+    required this.scrollController,
   }) : super(key: key);
 
   final List<MessageModel> messages;
+
+  final ScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView(
+        controller: scrollController,
         children: messages.map((e) {
           if (e.createdBy.id == context.read<AuthProvider>().currentUser.id) {
             return MyMessage(

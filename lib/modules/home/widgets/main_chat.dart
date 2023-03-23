@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/constaints/events.dart';
 import 'package:messeenger_flutter/providers/chat_provider.dart';
 import 'package:messeenger_flutter/services/chat_group_service.dart';
+import 'package:messeenger_flutter/services/message_service.dart';
 import 'package:messeenger_flutter/utils/socket_util.dart';
 import 'package:provider/provider.dart';
 
 import '../../../models/chat_group_model.dart';
+import '../../../models/message_model.dart';
 import 'bottom_chat_form.dart';
 import 'message_list.dart';
 
@@ -124,11 +126,46 @@ class MainChatBody extends StatefulWidget {
 }
 
 class _MainChatBodyState extends State<MainChatBody> {
+  List<MessageModel> _messages = [];
+  final ScrollController _scrollController = ScrollController();
+
   @override
   void initState() {
-    socket.on(NEW_MESSAGE, (data) => {setState(() {})});
-    socket.on(REMOVE_MESSAGE, (data) => {setState(() {})});
+    _initMessage();
+
+    socket.on(NEW_MESSAGE, (data) async {
+      final messageId = data['messageId'];
+      final groupId = data['groupId'];
+
+      if (groupId != widget.chatGroup.id) {
+        return;
+      }
+
+      final newMessage = await MessageService.getMessage(messageId);
+
+      setState(() {
+        _messages.add(newMessage);
+        _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 100),
+          curve: Curves.ease,
+        );
+      });
+    });
     super.initState();
+  }
+
+  void _initMessage() async {
+    final res = await ChatGroupService.getAllMessages(widget.chatGroup.id);
+
+    setState(() {
+      _messages = res;
+      _scrollController.animateTo(
+        _scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 100),
+        curve: Curves.ease,
+      );
+    });
   }
 
   @override
@@ -138,29 +175,10 @@ class _MainChatBodyState extends State<MainChatBody> {
         Expanded(
           child: Column(
             children: [
-              FutureBuilder(
-                  future: ChatGroupService.getAllMessages(
-                    context.watch<ChatProvider>().chatId ?? '',
-                  ),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Expanded(
-                        child: Center(
-                          child: Text(snapshot.error.toString()),
-                        ),
-                      );
-                    }
-
-                    return snapshot.hasData
-                        ? MessageList(
-                            messages: snapshot.data ?? [],
-                          )
-                        : const Expanded(
-                            child: Center(
-                              child: CircularProgressIndicator(),
-                            ),
-                          );
-                  }),
+              MessageList(
+                messages: _messages,
+                scrollController: _scrollController,
+              ),
               const BottomChatForm(),
             ],
           ),
