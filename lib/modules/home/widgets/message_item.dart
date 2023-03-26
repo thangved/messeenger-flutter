@@ -1,5 +1,7 @@
+import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:messeenger_flutter/models/message_model.dart';
+import 'package:messeenger_flutter/services/message_service.dart';
 
 class MyMessage extends StatelessWidget {
   const MyMessage({
@@ -20,7 +22,16 @@ class MyMessage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           InkWell(
-            onLongPress: () {},
+            onLongPress: () async {
+              if (message.deletedAt != null) return;
+              if (await confirm(
+                context,
+                title: const Text('Thu hồi tin nhắn'),
+                content: const Text('Bạn muốn thu hồi tin nhắn này?'),
+              )) {
+                await MessageService.delete(message.id);
+              }
+            },
             child: Column(
               children: [
                 message.deletedAt != null

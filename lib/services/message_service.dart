@@ -38,4 +38,8 @@ class MessageService {
 
     throw jsonDecode(res.body)['message'];
   }
+
+  static delete(messageId) async {
+    await client.delete('$baseUrl/messages/$messageId'.toUri());
+  }
 }

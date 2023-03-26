@@ -53,6 +53,7 @@ class MainChat extends StatelessWidget {
                       ),
                       body: MainChatBody(
                         chatGroup: snapshot.data ?? ChatGroupModel(),
+                        key: Key(context.read<ChatProvider>().chatId),
                       ),
                       backgroundColor: Colors.blue.withAlpha(10),
                     ),
@@ -145,26 +146,37 @@ class _MainChatBodyState extends State<MainChatBody> {
 
       setState(() {
         _messages.add(newMessage);
-        _scrollController.animateTo(
-          _scrollController.position.maxScrollExtent,
-          duration: const Duration(milliseconds: 100),
-          curve: Curves.ease,
-        );
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       });
+    });
+
+    socket.on(REMOVE_MESSAGE, (data) async {
+      final messageId = data['messageId'];
+      final groupId = data['groupId'];
+
+      print(data);
+
+      if (groupId != context.read<ChatProvider>().chatId) {
+        return;
+      }
+
+      for (var i = 0; i < _messages.length; i++) {
+        if (_messages[i].id == messageId) {
+          _messages[i].deletedAt = DateTime.now();
+        }
+      }
+
+      setState(() {});
     });
     super.initState();
   }
 
   void _initMessage() async {
-    final res = await ChatGroupService.getAllMessages(widget.chatGroup.id);
+    final res = await ChatGroupService.getAllMessages(context.read<ChatProvider>().chatId);
 
     setState(() {
       _messages = res;
-      _scrollController.animateTo(
-        _scrollController.position.maxScrollExtent,
-        duration: const Duration(milliseconds: 100),
-        curve: Curves.ease,
-      );
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
     });
   }
 
