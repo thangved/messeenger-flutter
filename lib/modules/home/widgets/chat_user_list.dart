@@ -126,9 +126,17 @@ class _ChatUserItemState extends State<ChatUserItem> {
       onTap: () {
         context.read<ChatProvider>().chatId = widget.id;
         if (isMobile) {
-          Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => const MainChat(),
-          ));
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => Column(
+                children: [
+                  MainChat(
+                    isMobile: isMobile,
+                  )
+                ],
+              ),
+            ),
+          );
         }
       },
     );

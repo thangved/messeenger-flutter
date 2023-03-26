@@ -88,23 +88,28 @@ class OtherUserMessage extends StatelessWidget {
           ),
           InkWell(
             onLongPress: () {},
-            child: message.type == 'text'
-                ? Container(
-                    margin: const EdgeInsets.only(left: 5),
-                    constraints: const BoxConstraints(
-                      maxWidth: 200,
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 20),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withAlpha(20),
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    child: Text(
-                      message.content,
-                    ),
+            child: message.deletedAt != null
+                ? const Padding(
+                    padding: EdgeInsets.only(left: 10),
+                    child: DeletedMessage(),
                   )
-                : ImageMessage(message: message),
+                : message.type == 'text'
+                    ? Container(
+                        margin: const EdgeInsets.only(left: 5),
+                        constraints: const BoxConstraints(
+                          maxWidth: 200,
+                        ),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 20),
+                        decoration: BoxDecoration(
+                          color: Colors.black.withAlpha(20),
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Text(
+                          message.content,
+                        ),
+                      )
+                    : ImageMessage(message: message),
           )
         ],
       ),

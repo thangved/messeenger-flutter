@@ -103,6 +103,7 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_icons:
   image_path: "assets/favicon.png"
+  image_path_android: "assets/favicon.png"
   linux: true
   android: true
   web: true

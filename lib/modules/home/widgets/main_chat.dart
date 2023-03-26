@@ -12,20 +12,18 @@ import 'bottom_chat_form.dart';
 import 'message_list.dart';
 
 class MainChat extends StatelessWidget {
-  const MainChat({
-    Key? key,
-  }) : super(key: key);
+  MainChat({Key? key, required this.isMobile}) : super(key: key);
+
+  bool isMobile;
 
   @override
   Widget build(BuildContext context) {
-    Size screenSize = MediaQuery.of(context).size;
-
-    bool isMobile = screenSize.width <= 800;
-
     return FutureBuilder(
       future: ChatGroupService.getById(context.watch<ChatProvider>().chatId),
       builder: (context, snapshot) {
-        if (snapshot.hasError) {}
+        if (snapshot.hasError) {
+          print(snapshot.error);
+        }
 
         return snapshot.hasData
             ? Expanded(
@@ -53,7 +51,7 @@ class MainChat extends StatelessWidget {
                       ),
                       body: MainChatBody(
                         chatGroup: snapshot.data ?? ChatGroupModel(),
-                        key: Key(context.read<ChatProvider>().chatId),
+                        key: Key(context.read<ChatProvider>().chatId ?? ''),
                       ),
                       backgroundColor: Colors.blue.withAlpha(10),
                     ),
@@ -134,6 +132,8 @@ class _MainChatBodyState extends State<MainChatBody> {
   void initState() {
     _initMessage();
 
+    socket.emit('join', {'groupId': context.read<ChatProvider>().chatId});
+
     socket.on(NEW_MESSAGE, (data) async {
       final messageId = data['messageId'];
       final groupId = data['groupId'];
@@ -146,15 +146,13 @@ class _MainChatBodyState extends State<MainChatBody> {
 
       setState(() {
         _messages.add(newMessage);
-        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
       });
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
     });
 
     socket.on(REMOVE_MESSAGE, (data) async {
       final messageId = data['messageId'];
       final groupId = data['groupId'];
-
-      print(data);
 
       if (groupId != context.read<ChatProvider>().chatId) {
         return;
@@ -172,12 +170,14 @@ class _MainChatBodyState extends State<MainChatBody> {
   }
 
   void _initMessage() async {
-    final res = await ChatGroupService.getAllMessages(context.read<ChatProvider>().chatId);
+    final res = await ChatGroupService.getAllMessages(
+        context.read<ChatProvider>().chatId);
 
     setState(() {
       _messages = res;
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
     });
+
+    _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
   }
 
   @override

@@ -23,6 +23,25 @@ class _BottomChatFormState extends State<BottomChatForm> {
   Widget build(BuildContext context) {
     final chatId = context.read<ChatProvider>().chatId;
 
+    void handleSendMessage() async {
+      try {
+        await MessageService.sendMessage(
+          groupId: context.read<ChatProvider>().chatId,
+          content: _messageText,
+        );
+      } catch (error) {
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text(error.toString()),
+              );
+            });
+      } finally {
+        textField.clear();
+      }
+    }
+
     return Container(
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -71,6 +90,7 @@ class _BottomChatFormState extends State<BottomChatForm> {
                   border: InputBorder.none,
                 ),
                 autofocus: true,
+                onFieldSubmitted: (v) => handleSendMessage(),
                 onChanged: (text) {
                   _messageText = text;
                 },
@@ -79,24 +99,7 @@ class _BottomChatFormState extends State<BottomChatForm> {
             ),
           ),
           IconButton(
-            onPressed: () async {
-              try {
-                await MessageService.sendMessage(
-                  groupId: context.read<ChatProvider>().chatId,
-                  content: _messageText,
-                );
-              } catch (error) {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        content: Text(error.toString()),
-                      );
-                    });
-              } finally {
-                textField.clear();
-              }
-            },
+            onPressed: handleSendMessage,
             icon: const Icon(
               Icons.send_rounded,
               color: Colors.blue,

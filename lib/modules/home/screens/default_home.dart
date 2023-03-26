@@ -50,7 +50,9 @@ class _DesktopLayoutState extends State<DesktopLayout> {
             ),
             widgets[_currentIndex],
             context.watch<ChatProvider>().chatId != null
-                ? const MainChat()
+                ? MainChat(
+                    isMobile: false,
+                  )
                 : Expanded(
                     child: Center(
                       child: Column(
